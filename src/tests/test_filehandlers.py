@@ -30,4 +30,6 @@ class TestCsvHandlerClass(unittest.TestCase):
         TestFile.create_file()
         test_list = CsvHandler.read_csv('test.csv')
         TestFile.delete_test_file()
-        print(type(test_list))
+        print(len(test_list))
+        self.assertEqual(len(test_list), 5)
+        self.assertEqual((test_list[0]['city_ascii'], test_list[0]['country'], test_list[0]['admin_name']), ('Tokyo', 'Japan', 'Tōkyō'))
