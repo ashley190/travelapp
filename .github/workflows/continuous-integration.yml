@@ -22,3 +22,9 @@ jobs:
         run: |
           cd src
           python -m unittest discover tests/
+      - name: Check code against style convention using pycodestyle
+        run: |
+          pycodestyle .
+      - name: Data Type Check
+        run: |
+          mypy Users.py testcode.py tests/
