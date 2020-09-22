@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 
 class TestUserClass(unittest.TestCase):
-    @patch('builtins.input', side_effect = ["testuser1", "Groot", "Ares"])
+    @patch('builtins.input', side_effect=["testuser1", "Groot", "Ares"])
     def test_user_instantiation(self, User):
         testuser1 = User()
         testuser2 = User()
