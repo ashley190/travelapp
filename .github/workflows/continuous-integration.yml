@@ -24,4 +24,5 @@ jobs:
           python -m unittest discover tests/
       - name: Data Type Check
         run: |
-          pwd
+          cd src
+          mypy Users.py tests/
