@@ -28,3 +28,7 @@ jobs:
         run: |
           cd src
           mypy Users.py tests/
+      - name: Style Check
+        run: |
+          cd src
+          pycodestyle .
