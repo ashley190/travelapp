@@ -23,6 +23,5 @@ jobs:
           cd src
           python -m unittest discover tests/
       - name: Data Type Check
-        uses: jpetrucciani/mypy-check@master
-        with: 
-          path: '/home/runner/work/travelapp/travelapp/src'
+        run: |
+          pwd
