@@ -8,3 +8,8 @@ class TestUserClass(unittest.TestCase):
     def test_user_instantiation(self):
         testuser = User()
         self.assertEqual(testuser.name, "testuser1", msg="name instantiation error")
+
+    @patch('builtins.input', lambda *args: "Groot")
+    def test_user_instantiation(self):
+        testuser = User()
+        self.assertEqual(testuser.name, "Groot", msg="name instantiation error")
