@@ -4,11 +4,11 @@ from unittest.mock import patch
 
 
 class TestUserClass(unittest.TestCase):
-    def test_user_instantiation(self):
-        @patch('builtins.input', lambda *args: "testuser1")
-        testuser = User()
-        self.assertEqual(testuser.name, "testuser1", msg="name instantiation error")
-
-        @patch('builtins.input', lambda *args: "Groot")
-        testuser = User()
-        self.assertEqual(testuser.name, "Groot", msg="name instantiation error")
+    @patch('builtins.input', side_effect = ["testuser1", "Groot", "Ares"])
+    def test_user_instantiation(self, User):
+        testuser1 = User()
+        testuser2 = User()
+        testuser3 = User()
+        self.assertTrue(testuser1 == "testuser1")
+        self.assertTrue(testuser2 == "Groot")
+        self.assertTrue(testuser3 == "Ares")
