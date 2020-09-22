@@ -25,4 +25,4 @@ jobs:
       - name: Data Type Check
         uses: jpetrucciani/mypy-check@master
         with: 
-          path: '/travelapp/src'
+          path: '/home/runner/work/travelapp/travelapp/src'
