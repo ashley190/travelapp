@@ -24,3 +24,5 @@ jobs:
           python -m unittest discover tests/
       - name: Data Type Check
         uses: jpetrucciani/mypy-check@master
+        with: 
+          path: '/travelapp/src'
