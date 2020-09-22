@@ -5,10 +5,13 @@ import json
 class CsvHandler:
     @classmethod
     def read_csv(cls, file_path):
-        with open(file_path, 'r') as csv_file:
-            raw_csv = csv.DictReader(csv_file)
-            python_list = list(raw_csv)
-            return python_list
+        try:
+            with open(file_path, 'r') as csv_file:
+                raw_csv = csv.DictReader(csv_file)
+                python_list = list(raw_csv)
+                return python_list
+        except FileNotFoundError:
+            print("File Not Found")
 
 
 class JsonHandler:
