@@ -11,7 +11,7 @@ class CsvHandler:
                 python_list = list(raw_csv)
                 return python_list
         except FileNotFoundError:
-            print("File Not Found")
+            return None
 
 
 class JsonHandler:
@@ -33,10 +33,10 @@ class JsonHandler:
 
 class FileConverter:
     @classmethod
-    def save_csv_as_json(cls, csv_path, json_path):
+    def save_data_as_json(cls, csv_path, json_path):
         python_list = CsvHandler.read_csv(csv_path)
         JsonHandler.write_json(json_path, python_list)
 
 
 # convert worldcities from csv to json format
-FileConverter.save_csv_as_json("resources/worldcities.csv", "resources/worldcities.json")
+FileConverter.save_data_as_json("resources/worldcities.csv", "resources/worldcities.json")
