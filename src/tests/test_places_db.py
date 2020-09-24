@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import Mock
 from test_filehandlers import TestFile
 from places_db import Places
-from simple_term_menu import TerminalMenu
+from simple_term_menu import TerminalMenu   # type: ignore
 
 
 class TestPlacesClass(unittest.TestCase):
