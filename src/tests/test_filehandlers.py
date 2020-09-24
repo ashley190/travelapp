@@ -3,7 +3,6 @@ import csv
 import os
 import unittest
 
-
 class TestFile:
     data = [
         ["Tokyo", "Tokyo", "35.6850", "139.7514", "Japan", "JP", "JPN", "Tōkyō", "primary", "35676000", "1392685764"],
@@ -15,7 +14,6 @@ class TestFile:
         ["London", "London", "51.5000", "-0.1167", "United Kingdom", "GB", "GBR", "London, City of", "primary", "8567000", "1826645935"]
     ]
 
-# try putting create and delete test file as a decorator
     @classmethod
     def create_file(cls):
         with open("test.csv", "w") as file:
@@ -28,24 +26,29 @@ class TestFile:
         for file in file_path:
             os.remove(file)
 
+    @classmethod
+    def create_test_json(cls, file_path):
+        cls.create_file()
+        test_data = CsvHandler.read_csv('test.csv')
+        JsonHandler.write_json(file_path, test_data)
+        cls.delete_test_file('test.csv')
 
 class TestFileHandlers(unittest.TestCase):
+    TestFile.create_file()
+    test_list = CsvHandler.read_csv("test.csv")
+    test_list_2 = CsvHandler.read_csv("")
+    FileConverter.save_data_as_json("test.csv", "test.json")
+    text_from_json = JsonHandler.read_json("test.json")
+    text_from_blank = JsonHandler.read_json("fake.json")
+    TestFile.delete_test_file("test.csv", "test.json")
+
     def test_read_csv(self):
-        TestFile.create_file()
-        test_list = CsvHandler.read_csv("test.csv")
-        test_list_2 = CsvHandler.read_csv("")
-        TestFile.delete_test_file("test.csv")
-        self.assertEqual(len(test_list), 7)
-        self.assertEqual((test_list[0]["city_ascii"], test_list[0]["country"], test_list[0]["admin_name"]), ("Tokyo", "Japan", "Tōkyō"))
-        self.assertEqual((test_list[3]["city_ascii"], test_list[3]["country"], test_list[3]["admin_name"]), ("Paris", "France", "Île-de-France"))
-        self.assertEqual((test_list_2), None)
+        self.assertEqual(len(self.test_list), 7)
+        self.assertEqual((self.test_list[0]["city_ascii"], self.test_list[0]["country"], self.test_list[0]["admin_name"]), ("Tokyo", "Japan", "Tōkyō"))
+        self.assertEqual((self.test_list[3]["city_ascii"], self.test_list[3]["country"], self.test_list[3]["admin_name"]), ("Paris", "France", "Île-de-France"))
+        self.assertEqual((self.test_list_2), None)
 
     def test_save_data_as_json(self):
-        TestFile.create_file()
-        FileConverter.save_data_as_json("test.csv", "test.json")
-        text_from_json = JsonHandler.read_json("test.json")
-        text_from_blank = JsonHandler.read_json("fake.json")
-        TestFile.delete_test_file("test.csv", "test.json")
-        self.assertEqual((text_from_json[1]["city_ascii"], text_from_json[1]["country"], text_from_json[1]["admin_name"]), ("Mexico City", "Mexico", "Ciudad de México"))
-        self.assertEqual((text_from_json[4]["city_ascii"], text_from_json[4]["country"], text_from_json[4]["admin_name"]), ("Austin", "United States", "Texas"))
-        self.assertEqual((text_from_blank), [])
+        self.assertEqual((self.text_from_json[1]["city_ascii"], self.text_from_json[1]["country"], self.text_from_json[1]["admin_name"]), ("Mexico City", "Mexico", "Ciudad de México"))
+        self.assertEqual((self.text_from_json[4]["city_ascii"], self.text_from_json[4]["country"], self.text_from_json[4]["admin_name"]), ("Austin", "United States", "Texas"))
+        self.assertEqual((self.text_from_blank), [])
