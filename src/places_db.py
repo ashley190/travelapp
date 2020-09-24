@@ -26,6 +26,7 @@ class Places:
         countries_menu: TerminalMenu = TerminalMenu(list_of_countries, title="Select a country")
         country_index: int = countries_menu.show()
         selected_country: str = list_of_countries[country_index]
+
         list_of_cities: list = [city for city in self.cities_database[selected_country]]
         cities_menu: TerminalMenu = TerminalMenu(list_of_cities, title=f"Select a place in {selected_country}")
         city_index: int = cities_menu.show()
