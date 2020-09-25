@@ -28,10 +28,18 @@ class Places:
         selected_country: str = list_of_countries[country_index]
         return selected_country
 
-    def select_city(self):
+    def select_region(self) -> tuple:
         selected_country = self.select_country()
-        list_of_cities: list = [city for city in self.cities_database[selected_country] if city != ""]
-        cities_menu: TerminalMenu = TerminalMenu(list_of_cities, title=f"Select a place in {selected_country}")
+        list_of_regions: list = [region for region in self.cities_database[selected_country] if region != ""]
+        regions_menu: TerminalMenu = TerminalMenu(list_of_regions, title=f"Select a region in {selected_country}")
+        region_index: int = regions_menu.show()
+        selected_region: str = list_of_regions[region_index]
+        return (selected_region, selected_country)
+
+    def select_city(self, selected_region_and_country) -> tuple:
+        selected_region, selected_country = selected_region_and_country
+        list_of_cities: list = [city for city in self.cities_database[selected_country][selected_region] if city != []]
+        cities_menu: TerminalMenu = TerminalMenu(list_of_cities, title=f"Select a city in {selected_region}")
         city_index: int = cities_menu.show()
         selected_city: str = list_of_cities[city_index]
         return (selected_city, selected_country)

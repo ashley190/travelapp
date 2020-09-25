@@ -2,7 +2,7 @@ import requests
 from dotenv import load_dotenv
 import os
 import json
-from places_db import Places
+from places import Places
 
 class TripAdvisorApi:
     load_dotenv()
@@ -15,11 +15,13 @@ class TripAdvisorApi:
             }
     
     def __init__(self, place):
-        self.city, self.country = place
+        self.region_and_country = place
+        self.region = place[0]
+        self.country = place[1]
     
     def get_location_id(self):
         url = self.endpoint + self.location_suffix
-        querystring = {"query": f"{self.city}, {self.country}"}
+        querystring = {"query": f"{self.region}, {self.country}"}
         response = requests.get(url, params=querystring, headers=self.headers)
         response_code = response.status_code
         result = json.loads(response.text)
@@ -31,8 +33,5 @@ class TripAdvisorApi:
         response = requests.get(url, params=querystring, headers=self.headers)
         response_code = response.status_code
         result = json.loads(response.text)
-        return result
-    
-    def top_pois(self, search_result):
-        raw_result = search_result
-        print(raw_result["data"][0])
+        return (result)
+

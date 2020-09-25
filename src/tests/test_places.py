@@ -1,8 +1,7 @@
 import unittest
 from unittest.mock import patch
 from test_filehandlers import TestFile
-from places_db import Places, TerminalMenu
-# from simple_term_menu import TerminalMenu   # type: ignore
+from places import Places
 
 
 class TestPlacesClass(unittest.TestCase):
@@ -21,10 +20,10 @@ class TestPlacesClass(unittest.TestCase):
         self.assertIsInstance(self.testplaces.cities_database['Japan'], dict)
         self.assertIsInstance(self.testplaces.cities_database['Japan']['Tōkyō'], list)
 
-    @patch('places_db.TerminalMenu')
+    @patch('places.TerminalMenu')
     def test_places_selection(self, TerminalMenu):
         instance = TerminalMenu.return_value
         instance.show.side_effect = [0, 0, 2, 1, 4, 0]
-        self.assertEqual(self.testplaces.select_city(), ('Tōkyō', 'Japan'))
-        self.assertEqual(self.testplaces.select_city(), ('Texas', 'United States'))
-        self.assertEqual(self.testplaces.select_city(), ('London, City of', 'United Kingdom'))
+        self.assertEqual(self.testplaces.select_region(), ('Tōkyō', 'Japan'))
+        self.assertEqual(self.testplaces.select_region(), ('Texas', 'United States'))
+        self.assertEqual(self.testplaces.select_region(), ('London, City of', 'United Kingdom'))
