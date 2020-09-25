@@ -1,5 +1,3 @@
-
-
 class ErrorHandling:
     @classmethod
     def poi_error(cls, region_and_country):
