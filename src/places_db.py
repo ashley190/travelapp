@@ -32,3 +32,7 @@ class Places:
         city_index: int = cities_menu.show()
         selected_city: str = list_of_cities[city_index]
         return (selected_city, selected_country)
+
+
+place = Places()
+print(place.select_country_and_city())
