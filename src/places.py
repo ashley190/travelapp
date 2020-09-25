@@ -36,7 +36,7 @@ class Places:
         selected_region: str = list_of_regions[region_index]
         return (selected_region, selected_country)
 
-    def select_city(self, selected_region_and_country) -> tuple:
+    def select_city(self, selected_region_and_country: tuple) -> tuple:
         selected_region, selected_country = selected_region_and_country
         list_of_cities: list = [city for city in self.cities_database[selected_country][selected_region] if city != []]
         cities_menu: TerminalMenu = TerminalMenu(list_of_cities, title=f"Select a city in {selected_region}")
