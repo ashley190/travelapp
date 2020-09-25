@@ -26,13 +26,21 @@ class Places:
         countries_menu: TerminalMenu = TerminalMenu(list_of_countries, title="Select a country")
         country_index: int = countries_menu.show()
         selected_country: str = list_of_countries[country_index]
+        print('$$$$$$$$$$$$$$$$$$$$$$$$')
+        print(list_of_countries)
+        print(country_index)
+        print(selected_country)
+        print('$$$$$$$$$$$$$$$$$$$$$$$$')
 
         list_of_cities: list = [city for city in self.cities_database[selected_country]]
         cities_menu: TerminalMenu = TerminalMenu(list_of_cities, title=f"Select a place in {selected_country}")
         city_index: int = cities_menu.show()
+        print('*****************')
+        print(list_of_cities)
+        print(city_index)
+        print('*****************')
         selected_city: str = list_of_cities[city_index]
         return (selected_city, selected_country)
 
-
-place = Places()
-print(place.select_country_and_city())
+# places = Places()
+# print(places.select_country_and_city())

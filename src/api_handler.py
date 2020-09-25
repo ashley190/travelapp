@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv
 import os
+import json
 
 
 class ApiHandler():
@@ -9,11 +10,14 @@ class ApiHandler():
         self.query_string = query_string
         self.headers = headers
 
-    def construct_api_query(self):
+    def get_info(self):
         response = requests.get(self.url, params=self.query_string, headers=self.headers)
-        return response.status_code
+        response_code = response.status_code
+        info = json.loads(response.text)
+        return info
 
 
+# testing
 load_dotenv()
 tripadvisor = ApiHandler(
     "https://tripadvisor1.p.rapidapi.com/locations/auto-complete",
@@ -22,5 +26,5 @@ tripadvisor = ApiHandler(
         "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
         "x-rapidapi-key": os.getenv("API_KEY")
         })
-code = tripadvisor.construct_api_query()
-print(code)
+test = tripadvisor.get_info()
+print(test['data'][0]['result_type'])
