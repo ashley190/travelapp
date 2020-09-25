@@ -4,6 +4,7 @@ import os
 import json
 from places import Places
 
+
 class TripAdvisorApi:
     load_dotenv()
     endpoint = "https://tripadvisor1.p.rapidapi.com/"
@@ -13,12 +14,12 @@ class TripAdvisorApi:
             "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
             "x-rapidapi-key": os.getenv("API_KEY")
             }
-    
+
     def __init__(self, place):
         self.region_and_country = place
         self.region = place[0]
         self.country = place[1]
-    
+
     def get_location_id(self):
         url = self.endpoint + self.location_suffix
         querystring = {"query": f"{self.region}, {self.country}"}
@@ -26,7 +27,7 @@ class TripAdvisorApi:
         response_code = response.status_code
         result = json.loads(response.text)
         return result["data"][0]["result_object"]["location_id"]
-    
+
     def get_poi(self, location_id):
         url = self.endpoint + self.poi_suffix
         querystring = {"location_id": (location_id)}
@@ -34,4 +35,3 @@ class TripAdvisorApi:
         response_code = response.status_code
         result = json.loads(response.text)
         return (result)
-
