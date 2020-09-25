@@ -27,4 +27,6 @@ tripadvisor = ApiHandler(
         "x-rapidapi-key": os.getenv("API_KEY")
         })
 test = tripadvisor.get_info()
-print(test['data'][0]['result_type'])
+for dictionary in 'geos':
+    if test['data'][0]['result_type'] == "geos":
+        pass

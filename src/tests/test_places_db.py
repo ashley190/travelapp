@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import MagicMock, Mock,patch
+from unittest.mock import patch
 from test_filehandlers import TestFile
 from places_db import Places, TerminalMenu
 # from simple_term_menu import TerminalMenu   # type: ignore
@@ -21,12 +21,10 @@ class TestPlacesClass(unittest.TestCase):
         self.assertIsInstance(self.testplaces.cities_database['Japan'], dict)
         self.assertIsInstance(self.testplaces.cities_database['Japan']['Tōkyō'], list)
 
-    # @patch('places_db.TerminalMenu.show', side_effect=[0, 0, 2, 1, 4, 0])
     @patch('places_db.TerminalMenu')
     def test_places_selection(self, termmenu):
-        with patch.object(termmenu, 'show', side_effect=[0, 0, 2, 1, 4, 0]):
-        # print(self.testplaces.cities_database)
-            print(self.testplaces.select_country_and_city())
-            self.assertEqual(self.testplaces.select_country_and_city(), ('Tōkyō', 'Japan'))
-        # self.assertEqual(self.testplaces.select_country_and_city(), ('Texas', 'United States'))
-        # self.assertEqual(self.testplaces.select_country_and_city(), ('London, City of', 'United Kingdom'))
+        instance = termmenu.return_value
+        instance.show.side_effect = [0, 0, 2, 1, 4, 0]
+        self.assertEqual(self.testplaces.select_city(), ('Tōkyō', 'Japan'))
+        self.assertEqual(self.testplaces.select_city(), ('Texas', 'United States'))
+        self.assertEqual(self.testplaces.select_city(), ('London, City of', 'United Kingdom'))
