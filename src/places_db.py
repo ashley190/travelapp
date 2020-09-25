@@ -30,9 +30,8 @@ class Places:
 
     def select_city(self):
         selected_country = self.select_country()
-        list_of_cities: list = [city for city in self.cities_database[selected_country]]
+        list_of_cities: list = [city for city in self.cities_database[selected_country] if city != ""]
         cities_menu: TerminalMenu = TerminalMenu(list_of_cities, title=f"Select a place in {selected_country}")
         city_index: int = cities_menu.show()
         selected_city: str = list_of_cities[city_index]
         return (selected_city, selected_country)
-

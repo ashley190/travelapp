@@ -9,7 +9,7 @@ class TestPlacesClass(unittest.TestCase):
     def setUp(self):
         TestFile.create_test_json('test.json')
         self.testplaces = Places('test.json')
-        
+
     def tearDown(self):
         TestFile.delete_test_file('test.json')
 
@@ -22,8 +22,8 @@ class TestPlacesClass(unittest.TestCase):
         self.assertIsInstance(self.testplaces.cities_database['Japan']['Tōkyō'], list)
 
     @patch('places_db.TerminalMenu')
-    def test_places_selection(self, termmenu):
-        instance = termmenu.return_value
+    def test_places_selection(self, TerminalMenu):
+        instance = TerminalMenu.return_value
         instance.show.side_effect = [0, 0, 2, 1, 4, 0]
         self.assertEqual(self.testplaces.select_city(), ('Tōkyō', 'Japan'))
         self.assertEqual(self.testplaces.select_city(), ('Texas', 'United States'))
