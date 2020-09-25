@@ -32,3 +32,8 @@ class TripAdvisorApi:
         poi_query = ApiQuery(url, querystring, self.headers)
         poi_results = poi_query.get_data()
         return poi_results
+
+
+test = TripAdvisorApi(("Tokyo", "Japan"))
+id = test.get_location_id()
+print(id)
