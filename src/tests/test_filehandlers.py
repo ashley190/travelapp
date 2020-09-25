@@ -36,13 +36,16 @@ class TestFile:
 
 
 class TestFileHandlers(unittest.TestCase):
-    TestFile.create_file()
-    test_list = CsvHandler.read_csv("test.csv")
-    test_list_2 = CsvHandler.read_csv("")
-    FileConverter.save_data_as_json("test.csv", "test.json")
-    text_from_json = JsonHandler.read_json("test.json")
-    text_from_blank = JsonHandler.read_json("fake.json")
-    TestFile.delete_test_file("test.csv", "test.json")
+    def setUp(self):
+        TestFile.create_file()
+        self.test_list = CsvHandler.read_csv("test.csv")
+        self.test_list_2 = CsvHandler.read_csv("")
+        FileConverter.save_data_as_json("test.csv", "test.json")
+        self.text_from_json = JsonHandler.read_json("test.json")
+        self.text_from_blank = JsonHandler.read_json("fake.json")
+
+    def tearDown(self):
+        TestFile.delete_test_file("test.csv", "test.json")
 
     def test_read_csv(self):
         self.assertEqual(len(self.test_list), 7)
