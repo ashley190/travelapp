@@ -1,8 +1,8 @@
-from File_Handler import JsonHandler
+from file_handler import JsonHandler
 from simple_term_menu import TerminalMenu   # type: ignore
 
 
-class Places:
+class Database:
     def __init__(self, places_file: str = 'resources/worldcities.json'):
         self.places = JsonHandler.read_json(places_file)
         self.cities_database: dict = self.create_cities_database()
@@ -21,6 +21,8 @@ class Places:
                 database[place['country']][place['admin_name']].append(place['city_ascii'])
         return database
 
+
+class Places(Database):
     def select_country(self):
         list_of_countries: list = [country for country in self.cities_database]
         countries_menu: TerminalMenu = TerminalMenu(list_of_countries, title="Select a country")

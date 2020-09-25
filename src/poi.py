@@ -1,8 +1,7 @@
-import requests
 from dotenv import load_dotenv
 import os
-import json
 from places import Places
+from api import ApiQuery
 
 
 class TripAdvisorApi:
@@ -23,15 +22,13 @@ class TripAdvisorApi:
     def get_location_id(self):
         url = self.endpoint + self.location_suffix
         querystring = {"query": f"{self.region}, {self.country}"}
-        response = requests.get(url, params=querystring, headers=self.headers)
-        response_code = response.status_code
-        result = json.loads(response.text)
-        return result["data"][0]["result_object"]["location_id"]
+        location_id_query = ApiQuery(url, querystring, self.headers)
+        location_id = location_id_query.get_data()
+        return location_id["data"][0]["result_object"]["location_id"]
 
     def get_poi(self, location_id):
         url = self.endpoint + self.poi_suffix
         querystring = {"location_id": (location_id)}
-        response = requests.get(url, params=querystring, headers=self.headers)
-        response_code = response.status_code
-        result = json.loads(response.text)
-        return (result)
+        poi_query = ApiQuery(url, querystring, self.headers)
+        poi_results = poi_query.get_data()
+        return poi_results
