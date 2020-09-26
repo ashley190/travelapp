@@ -1,8 +1,7 @@
 from dotenv import load_dotenv
 import os
 from places import Places
-from api import ApiQuery
-from helpers import Helpers
+from helpers import Helpers, ApiQuery
 
 
 class TripAdvisorApi:

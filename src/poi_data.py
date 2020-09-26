@@ -29,9 +29,3 @@ class PoiData:
                     if name["name"]:
                         item["category"] += f" > {name['name']}"
                 item.pop("subtype")
-
-
-class Display:
-    def __init__(self, place, data):
-        self.data = data
-        self.place = place

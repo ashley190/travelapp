@@ -1,10 +1,15 @@
+import requests
+import json
+
+
 class ErrorHandling:
     @classmethod
     def poi_error(cls, region_and_country):
+        """Handles error returned from API due to too wide a search"""
+
         from places import Places
         from get_poi import TripAdvisorApi
 
-        """Handles error returned from API due to too wide a search"""
         region = Places()
         city = region.select_city(region_and_country)
         city_search = TripAdvisorApi(city)
@@ -24,6 +29,20 @@ class ErrorHandling:
                 return "Redirection Error. Try Again"
             return func_value[1]
         return wrapper
+
+
+class ApiQuery:
+    def __init__(self, url, querystring=None, headers=None):
+        self.url = url
+        self.querystring = querystring
+        self.headers = headers
+
+    @ErrorHandling.handle_request_errors
+    def get_data(self):
+        response = requests.get(self.url, params=self.querystring, headers=self.headers)
+        response_code = response.status_code
+        data = json.loads(response.text)
+        return response_code, data
 
 
 class Helpers:
