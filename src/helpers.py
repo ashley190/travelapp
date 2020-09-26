@@ -47,3 +47,4 @@ class Helpers:
             if "ad_position" not in item and "ad_size" not in item:
                 ads_removed.append(item)
         return ads_removed
+

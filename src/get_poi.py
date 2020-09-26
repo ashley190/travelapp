@@ -34,17 +34,3 @@ class TripAdvisorApi:
         poi_query = ApiQuery(url, querystring, self.headers)
         poi_results = poi_query.get_data()
         return poi_results
-
-
-class PoiData:
-    def __init__(self, city_info, poi_results):
-        self.city_info = city_info
-        self.poi_results = poi_results["data"]
-
-    def extract(self):
-        raw_pois = Helpers.remove_ads(self.poi_results)
-        list_of_pois = []
-        for poi in raw_pois:
-            poi_details = Helpers.key_lookup(poi,"name", "location_id", "rating", "description", "category", "subcategory", "web_url", "website", "subtype")
-            list_of_pois.append(poi_details)
-        self.city_info["pois"] = list_of_pois
