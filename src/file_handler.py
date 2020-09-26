@@ -61,13 +61,13 @@ class UserFile:
             return False
 
 
-saved = UserFile("resources/saved.json")
-saved.past_searches = {('Tōkyō', 'Japan')}
-saved.check_duplicates(('New York', 'United States'))
-print(saved.past_searches)
-print(saved.check_duplicates(('Tōkyō', 'Japan')))
-if saved.check_duplicates(('Brooklyn', 'United States')):
-    print("yes")
-else:
-    print("no")
-print(saved.past_searches)
+# saved = UserFile("resources/saved.json")
+# saved.past_searches = {('Tōkyō', 'Japan')}
+# saved.check_duplicates(('New York', 'United States'))
+# print(saved.past_searches)
+# print(saved.check_duplicates(('Tōkyō', 'Japan')))
+# if saved.check_duplicates(('Brooklyn', 'United States')):
+#     print("yes")
+# else:
+#     print("no")
+# print(saved.past_searches)
