@@ -25,6 +25,7 @@ class ErrorHandling:
             return func_value[1]
         return wrapper
 
+
 class Helpers:
     @classmethod
     def key_lookup(cls, target, *keys):
@@ -37,9 +38,9 @@ class Helpers:
     @classmethod
     def geo_search(cls, target):
         for data in target:
-            if data["result_type"] =="geos":
+            if data["result_type"] == "geos":
                 return data["result_object"]
-    
+
     @classmethod
     def remove_ads(cls, target):
         ads_removed = []
@@ -47,4 +48,3 @@ class Helpers:
             if "ad_position" not in item and "ad_size" not in item:
                 ads_removed.append(item)
         return ads_removed
-

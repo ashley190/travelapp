@@ -4,6 +4,7 @@ from places import Places
 from api import ApiQuery
 from helpers import Helpers
 
+
 class TripAdvisorApi:
     load_dotenv()
     endpoint = "https://tripadvisor1.p.rapidapi.com/"
