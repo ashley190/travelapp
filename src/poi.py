@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 from places import Places
 from api import ApiQuery
-
+from helpers import Helpers
 
 class TripAdvisorApi:
     load_dotenv()
@@ -19,12 +19,14 @@ class TripAdvisorApi:
         self.region = place[0]
         self.country = place[1]
 
-    def get_location_id(self):
+    def location_search(self):
         url = self.endpoint + self.location_suffix
         querystring = {"query": f"{self.region}, {self.country}"}
         location_id_query = ApiQuery(url, querystring, self.headers)
-        location_id = location_id_query.get_data()
-        return location_id["data"][0]["result_object"]["location_id"]
+        location_data = location_id_query.get_data()
+        lookup = location_data["data"][0]["result_object"]
+        dict_search = Helpers.key_lookup(lookup, "name", "location_id", "description")
+        return dict_search
 
     def get_poi(self, location_id):
         url = self.endpoint + self.poi_suffix
@@ -34,6 +36,15 @@ class TripAdvisorApi:
         return poi_results
 
 
-test = TripAdvisorApi(("Tokyo", "Japan"))
-id = test.get_location_id()
-print(id)
+class PoiData:
+    def __init__(self, location info, poi_results):
+        self.poi_results = poi_results["data"]
+
+    def extract(self):
+        top_attractions = {}
+        for poi in self.poi_results:
+            if "name" in poi:
+                top_attractions[poi["name"]] = {}
+            print(poi["name"])
+
+

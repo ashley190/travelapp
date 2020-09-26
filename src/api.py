@@ -1,6 +1,6 @@
 import requests
 import json
-from error_handlers import ErrorHandling
+from helpers import ErrorHandling
 
 
 class ApiQuery:

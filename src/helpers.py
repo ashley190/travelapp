@@ -8,8 +8,8 @@ class ErrorHandling:
         region = Places()
         city = region.select_city(region_and_country)
         city_search = TripAdvisorApi(city)
-        location_id = city_search.get_location_id()
-        poi = city_search.get_poi(location_id)
+        location_result = city_search.location_search()
+        poi = city_search.get_poi(location_result["location_id"])
         return poi
 
     @classmethod
@@ -24,3 +24,12 @@ class ErrorHandling:
                 return "Redirection Error. Try Again"
             return func_value[1]
         return wrapper
+
+class Helpers:
+    @classmethod
+    def key_lookup(cls, target, *keys):
+        key_dict = {}
+        for key in keys:
+            if key in target:
+                key_dict[key] = target[key]
+        return key_dict
