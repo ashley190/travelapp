@@ -2,7 +2,7 @@ class ErrorHandling:
     @classmethod
     def poi_error(cls, region_and_country):
         from places import Places
-        from poi import TripAdvisorApi
+        from get_poi import TripAdvisorApi
 
         """Handles error returned from API due to too wide a search"""
         region = Places()
@@ -10,7 +10,7 @@ class ErrorHandling:
         city_search = TripAdvisorApi(city)
         location_result = city_search.location_search()
         poi = city_search.get_poi(location_result["location_id"])
-        return location_result, poi
+        return location_result, poi, city
 
     @classmethod
     def handle_request_errors(cls, func):
