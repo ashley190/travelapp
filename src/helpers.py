@@ -10,7 +10,7 @@ class ErrorHandling:
         city_search = TripAdvisorApi(city)
         location_result = city_search.location_search()
         poi = city_search.get_poi(location_result["location_id"])
-        return poi
+        return location_result, poi
 
     @classmethod
     def handle_request_errors(cls, func):
@@ -33,3 +33,17 @@ class Helpers:
             if key in target:
                 key_dict[key] = target[key]
         return key_dict
+
+    @classmethod
+    def geo_search(cls, target):
+        for data in target:
+            if data["result_type"] =="geos":
+                return data["result_object"]
+    
+    @classmethod
+    def remove_ads(cls, target):
+        ads_removed = []
+        for item in target:
+            if "ad_position" not in item and "ad_size" not in item:
+                ads_removed.append(item)
+        return ads_removed

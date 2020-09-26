@@ -24,7 +24,7 @@ class TripAdvisorApi:
         querystring = {"query": f"{self.region}, {self.country}"}
         location_id_query = ApiQuery(url, querystring, self.headers)
         location_data = location_id_query.get_data()
-        lookup = location_data["data"][0]["result_object"]
+        lookup = Helpers.geo_search(location_data["data"])
         dict_search = Helpers.key_lookup(lookup, "name", "location_id", "description")
         return dict_search
 
@@ -37,14 +37,14 @@ class TripAdvisorApi:
 
 
 class PoiData:
-    def __init__(self, location info, poi_results):
+    def __init__(self, city_info, poi_results):
+        self.city_info = city_info
         self.poi_results = poi_results["data"]
 
     def extract(self):
-        top_attractions = {}
-        for poi in self.poi_results:
-            if "name" in poi:
-                top_attractions[poi["name"]] = {}
-            print(poi["name"])
-
-
+        raw_pois = Helpers.remove_ads(self.poi_results)
+        list_of_pois = []
+        for poi in raw_pois:
+            poi_details = Helpers.key_lookup(poi,"name", "location_id", "rating", "description", "category", "subcategory", "web_url", "website", "subtype")
+            list_of_pois.append(poi_details)
+        self.city_info["pois"] = list_of_pois
