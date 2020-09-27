@@ -1,5 +1,5 @@
 import textwrap
-from prettytable import PrettyTable # type: ignore
+from prettytable import PrettyTable     # type: ignore
 
 
 class Display:
