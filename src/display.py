@@ -1,5 +1,5 @@
 import textwrap
-from prettytable import PrettyTable
+from prettytable import PrettyTable # type: ignore
 
 
 class Display:
@@ -16,12 +16,10 @@ class Display:
         print("Description:")
         self.wrap_paragraph(self.data["Data"]["description"])
         print(f"Here are some places of interest in {self.data['City']}")
-        # list_of_pois = self.data["Data"]["pois"]
-        self.poi_data_tables()
+        print(self.poi_data_tables())
 
-    def poi_data_tables(self):
+    def poi_data_tables(self) -> PrettyTable:
         for poi in self.data["Data"]["pois"]:
-            # print(poi["name"])
             poi_table = PrettyTable()
             poi_table.field_names = ["POI", poi['name']]
             poi_table.align = "l"
@@ -34,5 +32,4 @@ class Display:
                 poi_table.add_row(["Rating", poi["rating"]])
             if poi["web_url"]:
                 poi_table.add_row(["More info", poi["web_url"]])
-            # poi_table.add_row(["", ""])
-            print(poi_table)
+            return(poi_table)
