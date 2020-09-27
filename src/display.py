@@ -11,13 +11,6 @@ class Display:
         for line in wrapped:
             print(textwrap.indent(line, "    "))
 
-    def display_saved_data(self):
-        print(f"City: {self.data['City']}")
-        print("Description:")
-        self.wrap_paragraph(self.data["Data"]["description"])
-        print(f"Here are some places of interest in {self.data['City']}")
-        print(self.poi_data_tables())
-
     def poi_data_tables(self) -> PrettyTable:
         for poi in self.data["Data"]["pois"]:
             poi_table = PrettyTable()
@@ -32,4 +25,18 @@ class Display:
                 poi_table.add_row(["Rating", poi["rating"]])
             if poi["web_url"]:
                 poi_table.add_row(["More info", poi["web_url"]])
-            return(poi_table)
+            print(poi_table)
+
+    def display_saved_data(self):
+        if "City" in self.data:
+            print(f"City: {self.data['City']}")
+        elif "Region" in self.data:
+            print(f"Region: {self.data['Region']}")
+        if "Description" in self.data["Data"]:
+            print("Description:")
+            self.wrap_paragraph(self.data["Data"]["description"])
+        if "City" in self.data:
+            print(f"Here are some places of interest in {self.data['City']}")
+        elif "Region" in self.data:
+            print(f"Here are some places of interest in {self.data['Region']}")
+        self.poi_data_tables()
