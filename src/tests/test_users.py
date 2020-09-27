@@ -5,7 +5,8 @@ from unittest.mock import patch
 
 
 class TestUserClass(unittest.TestCase):
-    @patch("builtins.input", side_effect=["testuser1", "Groot", "Ares", "key1", "key2"])
+    @patch("builtins.input",
+           side_effect=["testuser1", "Groot", "Ares", "key1", "key2"])
     def test_user_instantiation(self, User):
         testuser1 = User()
         testuser2 = User()
@@ -14,7 +15,8 @@ class TestUserClass(unittest.TestCase):
         self.assertTrue(testuser2 == "Groot")
         self.assertTrue(testuser3 == "Ares")
 
-    @patch("builtins.input", side_effect=["testuser1", "key123", "testuser2", "key456"])
+    @patch("builtins.input",
+           side_effect=["testuser1", "key123", "testuser2", "key456"])
     def setUp(self, mock_input):
         self.testuser1 = User()
         self.testuser1.set_API_key("test1")

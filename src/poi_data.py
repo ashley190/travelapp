@@ -10,7 +10,17 @@ class PoiData:
         raw_pois = Helpers.remove_ads(self.poi_results)
         list_of_pois = []
         for poi in raw_pois:
-            poi_details = Helpers.key_lookup(poi, "name", "location_id", "rating", "description", "category", "subcategory", "web_url", "website", "subtype")
+            poi_details = Helpers.key_lookup(
+                poi,
+                "name",
+                "location_id",
+                "rating",
+                "description",
+                "category",
+                "subcategory",
+                "web_url",
+                "website",
+                "subtype")
             list_of_pois.append(poi_details)
         self.city_info["pois"] = list_of_pois
 
