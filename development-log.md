@@ -6,3 +6,5 @@
 24-September: Used Mock successfully to automate test user input for country and city selection! Terribly frustrating day. Couldn't figure out issue with test_places_selection in test_places_db. Spent too much time over the problem. Unittest would pass in local environment but throws up different process and import errors on CI workflow when pushing to github.
 25-September: Issue resolved with Garret's help. Continued writing code to retrieve info from TripAdvisor API. Data will require cleaning up before display and storing
 26-September: Worked on cleaning up data from API. Wrote some helper functions to aid lookup and remove embedded ads. Start work on displaying data to user.
+27-September: Finished coding MVP. Discovered bug in saving history list. 
+28-September: Changed file formats for saving and retrieving. Fixed bugs in code. Write automated testing for....
