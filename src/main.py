@@ -29,13 +29,13 @@ if not history_check:
     file_name = f"{ash_file.region[0]}-{ash_file.region[1]}.json"
     history_check = ash_file.search_and_display_data(ash_file.city, file_name)
 
-# look up TripAdvisorAPI if region and city does not exist in cached file
-# Extract and consolidate data
-# Save and display data
-if not history_check:
-    search_api = TripAdvisorApi(ash_file.region, ash_file.city)
-    api_results = search_api.poi_search()
-    results_data = PoiData(api_results[0], api_results[1])
-    results_data.extract()
-    results_data.consolidate_categories()
-    ash_file.read_flag_and_save(results_data.city_info, api_results[2])
+# # look up TripAdvisorAPI if region and city does not exist in cached file
+# # Extract and consolidate data
+# # Save and display data
+# if not history_check:
+#     search_api = TripAdvisorApi(ash_file.region, ash_file.city)
+#     api_results = search_api.poi_search()
+#     results_data = PoiData(api_results[0], api_results[1])
+#     results_data.extract()
+#     results_data.consolidate_categories()
+#     ash_file.read_flag_and_save(results_data.city_info, api_results[2])

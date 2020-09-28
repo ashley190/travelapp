@@ -96,3 +96,4 @@ class TestFileHandlers(unittest.TestCase):
         self.assertEqual("Dhaka", test2_text[7]["city"])
         self.assertEqual(len(test2_text), 8)
         self.assertEqual(len(original_text), 7)
+        TestFile.delete_test_file("test2.json")
