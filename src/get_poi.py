@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from helpers import Helpers, ApiQuery
+from helpers import Helpers, ApiQuery, ErrorHandling
 
 
 class TripAdvisorApi:
@@ -22,7 +22,8 @@ class TripAdvisorApi:
         querystring = {"query": f"{place[0]}, {place[1]}"}
         location_id_query = ApiQuery(url, querystring, self.headers)
         location_data = location_id_query.get_data()
-        lookup = Helpers.geo_search(location_data["data"])
+        ErrorHandling.handle_request_errors(location_data)
+        lookup = Helpers.geo_search(location_data[1]["data"])
         dict_search = Helpers.key_lookup(
             lookup, "name",
             "location_id",
@@ -34,7 +35,8 @@ class TripAdvisorApi:
         querystring = {"location_id": (location_id)}
         poi_query = ApiQuery(url, querystring, self.headers)
         poi_results = poi_query.get_data()
-        return poi_results
+        ErrorHandling.handle_request_errors(poi_results)
+        return poi_results[1]
 
     def poi_search(self):
         region_info = self.location_search(self.region_and_country)

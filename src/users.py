@@ -10,13 +10,14 @@ class User:
 
     def set_API_key(self, file_path=".env"):
         print("""
-        You can obtain an API key when you sign up
-        and subscribe to the Tripadvisor API on RapidAPI.
-        URL: https://rapidapi.com/apidojo/api/tripadvisor1""")
+    You can obtain an API key when you sign up
+    and subscribe to the Tripadvisor API on RapidAPI.
+    URL: https://rapidapi.com/apidojo/api/tripadvisor1
+    """)
         user_key = input("Please enter your API key here\n")
         with open(file_path, "w") as file:
             file.write(f"API_KEY={user_key}")
-            print("API key saved as a persistent environment variable")
+            print("API key saved.")
 
     def API_key_check(self, file_path=".env"):
         try:
@@ -40,13 +41,13 @@ class UserFile:
     def read_flag_and_save(self, data, flag):
         if flag == "region":
             final_format = {"Region": self.region, "Data": data}
-            file_path = f"{self.path}{self.region[0]}-{self.region[1]}"
+            file_path = f"{self.path}{self.region[0]}-{self.region[1]}.json"
             self.past_searches.append(self.region)
             JsonHandler.write_json(
                 f"{self.path}search_history", self.past_searches)
         elif flag == "city":
             final_format = {"City": self.city, "Data": data}
-            file_path = f"{self.path}{self.city[0]}-{self.city[1]}"
+            file_path = f"{self.path}{self.city[0]}-{self.city[1].json}.json"
             self.past_searches.append(self.city)
             JsonHandler.write_json(
                 f"{self.path}search_history", self.past_searches)

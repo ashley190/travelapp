@@ -1,22 +1,26 @@
 import requests
+from requests import exceptions
 import json
 from file_handler import JsonHandler
 from display import Display
+import sys
 
 
 class ErrorHandling:
     @classmethod
-    def handle_request_errors(cls, func):
-        def wrapper(*args, **kwargs):
-            func_value = func(*args, **kwargs)
-            if func_value[0] >= 500:
-                return "Server Error. Try Again"
-            elif func_value[0] >= 400:
-                return "Request Error. Try Again"
-            elif func_value[0] >= 300:
-                return "Redirection Error. Try Again"
-            return func_value[1]
-        return wrapper
+    def handle_request_errors(cls, response):
+        error = False
+        if response[0] >= 500:
+            print(f"Server Error. Message: {response[1]}")
+            error = True
+        elif response[0] >= 400:
+            print(f"Request Error. Message: {response[1]}")
+            error = True
+        elif response[0] >= 300:
+            print(f"Redirection Error. Message: {response[1]}")
+            error = True
+        if error:
+            sys.exit("Program exited. Please try again.")
 
 
 class ApiQuery:
@@ -25,15 +29,18 @@ class ApiQuery:
         self.querystring = querystring
         self.headers = headers
 
-    @ErrorHandling.handle_request_errors
     def get_data(self):
-        response = requests.get(
-            self.url,
-            params=self.querystring,
-            headers=self.headers)
-        response_code = response.status_code
-        data = json.loads(response.text)
-        return response_code, data
+        try:
+            response = requests.get(
+                self.url,
+                params=self.querystring,
+                headers=self.headers)
+            response_code = response.status_code
+            data = json.loads(response.text)
+            return response_code, data
+        except exceptions.RequestException as error:
+            print(error)
+            sys.exit("Program exited. Please try again.")
 
 
 class Helpers:
