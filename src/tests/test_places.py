@@ -17,10 +17,10 @@ class TestCitiesDbClass(unittest.TestCase):
         self.assertIsInstance(self.testplaces.cities_db["Japan"], dict)
         self.assertIsInstance(
             self.testplaces.cities_db["Mexico"]["Ciudad de México"], list)
-        self.assertTrue(
-            "California" in self.testplaces.cities_db["United States"])
-        self.assertTrue(
-            "Paris" in self.testplaces.cities_db["France"]["Île-de-France"])
+        self.assertIn(
+            "California", self.testplaces.cities_db["United States"])
+        self.assertIn(
+            "Paris", self.testplaces.cities_db["France"]["Île-de-France"])
 
 
 class TestPlacesClass(unittest.TestCase):

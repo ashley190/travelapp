@@ -81,3 +81,18 @@ class TestFileHandlers(unittest.TestCase):
         self.assertEqual((self.city_4, self.country_4, self.state_4),
                          ("Austin", "United States", "Texas"))
         self.assertEqual((self.text_from_blank), [])
+
+    def test_read_and_write_json(self):
+        self.assertIsNotNone(self.text_from_json)
+        self.assertEqual(self.text_from_blank, [])
+        self.text_from_json.append(
+            {"city": "Dhaka", "city_ascii": "Dhaka", "lat": "23.7231",
+             "lng": "90.4086", "country": "Bangladesh", "iso2": "BD",
+             "iso3": "BGD", "admin_name": "Dhaka", "capital": "primary",
+             "population": "12797394", "id": "1050529279"})
+        JsonHandler.write_json("test2.json", self.text_from_json)
+        original_text = JsonHandler.read_json("test.json")
+        test2_text = JsonHandler.read_json("test2.json")
+        self.assertEqual("Dhaka", test2_text[7]["city"])
+        self.assertEqual(len(test2_text), 8)
+        self.assertEqual(len(original_text), 7)
