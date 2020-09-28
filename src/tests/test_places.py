@@ -26,11 +26,11 @@ class TestPlacesClass(unittest.TestCase):
     def test_region_selection(self, TerminalMenu):
         instance = TerminalMenu.return_value
         instance.show.side_effect = [0, 0, 2, 1, 4, 0]
-        self.assertEqual(self.testplaces.select_region(), ("Tōkyō", "Japan"))
+        self.assertEqual(self.testplaces.select_region(), ["Tōkyō", "Japan"])
         self.assertEqual(self.testplaces.select_region(),
-                         ("Texas", "United States"))
+                         ["Texas", "United States"])
         self.assertEqual(self.testplaces.select_region(),
-                         ("London, City of", "United Kingdom"))
+                         ["London, City of", "United Kingdom"])
 
     @patch("places.TerminalMenu")
     def test_city_selection(self, TerminalMenu):
@@ -40,8 +40,8 @@ class TestPlacesClass(unittest.TestCase):
         test2 = ("Texas", "United States")
         test3 = ("Île-de-France", "France")
         self.assertEqual(self.testplaces.select_city(test1),
-                         ("Mexico City", "Mexico"))
+                         ["Mexico City", "Mexico"])
         self.assertEqual(self.testplaces.select_city(test2),
-                         ("Arlington", "United States"))
+                         ["Arlington", "United States"])
         self.assertEqual(self.testplaces.select_city(test3),
-                         ("Paris", "France"))
+                         ["Paris", "France"])
