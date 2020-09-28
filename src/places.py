@@ -36,7 +36,7 @@ class Places(Database):
         selected_country: str = list_of_countries[country_index]
         return selected_country
 
-    def select_region(self) -> tuple:
+    def select_region(self) -> list:
         selected_country = self.select_country()
         country_regions = self.cities_db[selected_country]
         regions: list = [region for region in country_regions if region != ""]
@@ -45,7 +45,7 @@ class Places(Database):
             title=f"Select a region in {selected_country}")
         region_index: int = regions_menu.show()
         selected_region: str = regions[region_index]
-        return (selected_region, selected_country)
+        return [selected_region, selected_country]
 
     def select_city(self, selected_region_and_country: tuple) -> tuple:
         selected_region, selected_country = selected_region_and_country
@@ -56,4 +56,4 @@ class Places(Database):
             title=f"Select a city in {selected_region}")
         city_index: int = cities_menu.show()
         selected_city: str = cities[city_index]
-        return (selected_city, selected_country)
+        return [selected_city, selected_country]

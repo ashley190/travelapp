@@ -39,8 +39,9 @@ class TripAdvisorApi:
     def poi_search(self):
         region_info = self.location_search(self.region_and_country)
         region_pois = self.get_poi(region_info["location_id"])
-        return (region_info, region_pois, "region")
         if "errors" in region_pois:
             city_info = self.location_search(self.city_and_country)
             city_pois = self.get_poi(city_info["location_id"])
             return (city_info, city_pois, "city")
+        else:
+            return (region_info, region_pois, "region")

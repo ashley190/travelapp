@@ -1,19 +1,31 @@
-# from get_poi import TripAdvisorApi
-# from poi_data import PoiData
-# from helpers import ErrorHandling
-# from users import User
-# from file_handler import UserFile
+from users import User, UserFile
+from places import Places
+from get_poi import TripAdvisorApi
+from poi_data import PoiData
 
+# user and API check
+ash = User()
+key_check = ash.API_key_check()
+while not key_check:
+    ash.set_API_key()
+    key_check = ash.API_key_check()
 
-# place = Places()                # Instantiate place
-# region = place.select_region()  # Select country and region
-# region_search = TripAdvisorApi(region)  # Query TripAdvisorAPI
-# location_result = region_search.location_search()   # get location id
-# poi = region_search.get_poi(location_result["location_id"])   # get pois
-# if "errors" in poi:    # select city if search is too wide
-#     location_result, poi, region = ErrorHandling.poi_error(region)
-# data = PoiData(location_result, poi)
-# data.extract()
-# data.consolidate_categories()
-# userfile = UserFile("resources/saved")
-# userfile.save_data(region, data.city_info)
+# place selection
+place = Places()
+selected_region = place.select_region()
+user_path = f"resources/{ash.name}/"
+
+# userfile object creation to search past history and display result if exists
+ash_file = UserFile(selected_region, user_path)
+file_name = "saved-places.json"
+history_check = ash_file.search_and_display_data(selected_region, file_name)
+if not history_check:
+    ash_file.city = place.select_city(ash_file.region)
+    history_check = ash_file.search_and_display_data(ash_file.city, file_name)
+if not history_check:
+    search_api = TripAdvisorApi(ash_file.region, ash_file.city)
+    api_results = search_api.poi_search()
+    results_data = PoiData(api_results[0], api_results[1])
+    results_data.extract()
+    results_data.consolidate_categories()
+    ash_file.read_flag_and_save(results_data.city_info, api_results[2])

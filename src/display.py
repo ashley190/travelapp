@@ -17,13 +17,13 @@ class Display:
             poi_table.field_names = ["POI", poi['name']]
             poi_table.align = "l"
             poi_table._max_width = {"POI": 15, poi["name"]: 80}
-            if poi["description"]:
+            if "description" in poi:
                 poi_table.add_row(["Description", poi["description"]])
-            if poi["category"]:
+            if "category" in poi:
                 poi_table.add_row(["Category", poi["category"]])
-            if poi["rating"]:
+            if "rating" in poi:
                 poi_table.add_row(["Rating", poi["rating"]])
-            if poi["web_url"]:
+            if "web_url" in poi:
                 poi_table.add_row(["More info", poi["web_url"]])
             print(poi_table)
 
@@ -32,7 +32,7 @@ class Display:
             print(f"City: {self.data['City']}")
         elif "Region" in self.data:
             print(f"Region: {self.data['Region']}")
-        if "Description" in self.data["Data"]:
+        if "description" in self.data["Data"]:
             print("Description:")
             self.wrap_paragraph(self.data["Data"]["description"])
         if "City" in self.data:

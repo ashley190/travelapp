@@ -1,5 +1,7 @@
 import requests
 import json
+from file_handler import JsonHandler
+from display import Display
 
 
 class ErrorHandling:
@@ -56,3 +58,24 @@ class Helpers:
             if "ad_position" not in item and "ad_size" not in item:
                 ads_removed.append(item)
         return ads_removed
+
+    @classmethod
+    def history_search(self, func):
+        def wrapper(*args, **kwargs):
+            func_value = func(*args, **kwargs)
+            return func_value
+        return wrapper
+
+
+class Decorators:
+    @classmethod
+    def save_and_display_data(cls, func):
+        def wrapper(*args, **kwargs):
+            func_value = func(*args, **kwargs)
+            content = JsonHandler.read_json(func_value[1])
+            content.append(func_value[0])
+            JsonHandler.write_json(func_value[1], content)
+            display_content = Display(content[0])
+            display_content.display_saved_data()
+            return func_value
+        return wrapper
