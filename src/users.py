@@ -6,7 +6,7 @@ from helpers import Helpers, Decorators
 class User:
     def __init__(self):
         self.name: str = input("What is your name?\n")
-        self.path = f"resources/{self.name}-saved.json"
+        self.path = f"resources/{self.name}/"
 
     def set_API_key(self, file_path=".env"):
         print("""
@@ -47,7 +47,7 @@ class UserFile:
                 f"{self.path}search_history", self.past_searches)
         elif flag == "city":
             final_format = {"City": self.city, "Data": data}
-            file_path = f"{self.path}{self.city[0]}-{self.city[1].json}.json"
+            file_path = f"{self.path}{self.city[0]}-{self.city[1]}.json"
             self.past_searches.append(self.city)
             JsonHandler.write_json(
                 f"{self.path}search_history", self.past_searches)

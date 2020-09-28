@@ -15,10 +15,9 @@ while not key_check:
 # place selection
 place = Places()
 selected_region = place.select_region()
-user_path = f"resources/{ash.name}/"
 
 # userfile object creation to search past history and display result if exists
-ash_file = UserFile(selected_region, user_path)
+ash_file = UserFile(selected_region, ash.path)
 file_name = f"{ash_file.region[0]}-{ash_file.region[1]}.json"
 
 # history check at region level
