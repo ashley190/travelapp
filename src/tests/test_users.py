@@ -1,4 +1,4 @@
-from users import User
+from users import User, UserFile
 from test_filehandlers import TestFile
 import unittest
 from unittest.mock import patch
@@ -32,6 +32,6 @@ class TestUserClass(unittest.TestCase):
         self.assertTrue(self.testuser1.API_key_check("test1"))
         self.assertFalse(self.testuser2.API_key_check("fake"))
 
-class TesetUserFile(unittest.TestCase):
-    self.test_file1 = UserFile(["New York", "United States"], "resources/test")
-    self.test_file2 = UserFile(["Delhi, India"], "resources/test")
+class TestUserFile(unittest.TestCase):
+    test_file1 = UserFile(["New York", "United States"], "resources/test")
+    test_file2 = UserFile(["Delhi, India"], "resources/test")
