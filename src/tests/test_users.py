@@ -31,3 +31,7 @@ class TestUserClass(unittest.TestCase):
             self.assertEqual(file.read(), "API_KEY=key123")
         with open("test2", "r") as file:
             self.assertEqual(file.read(), "API_KEY=key456")
+
+    def test_api_key_check(self):
+        self.assertTrue(self.testuser1.API_key_check("test1"))
+        self.assertFalse(self.testuser2.API_key_check("fake"))

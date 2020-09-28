@@ -1,7 +1,26 @@
 import unittest
 from unittest.mock import patch
 from test_filehandlers import TestFile
-from places import Places
+from places import Places, Database
+
+
+class TestCitiesDbClass(unittest.TestCase):
+    def setUp(self):
+        TestFile.create_test_json("test.json")
+        self.testplaces = Database("test.json")
+
+    def tearDown(self):
+        TestFile.delete_test_file("test.json")
+
+    def test_database_creation(self):
+        self.assertIsInstance(self.testplaces.cities_db, dict)
+        self.assertIsInstance(self.testplaces.cities_db["Japan"], dict)
+        self.assertIsInstance(
+            self.testplaces.cities_db["Mexico"]["Ciudad de México"], list)
+        self.assertTrue(
+            "California" in self.testplaces.cities_db["United States"])
+        self.assertTrue(
+            "Paris" in self.testplaces.cities_db["France"]["Île-de-France"])
 
 
 class TestPlacesClass(unittest.TestCase):
@@ -36,12 +55,12 @@ class TestPlacesClass(unittest.TestCase):
     def test_city_selection(self, TerminalMenu):
         instance = TerminalMenu.return_value
         instance.show.side_effect = [0, 1, 0]
-        test1 = ("Ciudad de México", "Mexico")
-        test2 = ("Texas", "United States")
-        test3 = ("Île-de-France", "France")
-        self.assertEqual(self.testplaces.select_city(test1),
+        selected_region_1 = ("Ciudad de México", "Mexico")
+        selected_region_2 = ("Texas", "United States")
+        selected_region_3 = ("Île-de-France", "France")
+        self.assertEqual(self.testplaces.select_city(selected_region_1),
                          ["Mexico City", "Mexico"])
-        self.assertEqual(self.testplaces.select_city(test2),
+        self.assertEqual(self.testplaces.select_city(selected_region_2),
                          ["Arlington", "United States"])
-        self.assertEqual(self.testplaces.select_city(test3),
+        self.assertEqual(self.testplaces.select_city(selected_region_3),
                          ["Paris", "France"])

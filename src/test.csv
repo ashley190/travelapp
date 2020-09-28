@@ -1,0 +1,8 @@
+city,city_ascii,lat,lng,country,iso2,iso3,admin_name,capital,population,id
+Tokyo,Tokyo,35.6850,139.7514,Japan,JP,JPN,Tōkyō,primary,35676000,1392685764
+Mexico City,Mexico City,19.4424,-99.1310,Mexico,MX,MEX,Ciudad de México,primary,19028000,1484247881
+Los Angeles,Los Angeles,34.1139,-118.4068,United States,US,USA,California,,12815475.0,1840020491
+Paris,Paris,48.8667,2.3333,France,FR,FRA,Île-de-France,primary,9904000,1250015082
+Austin,Austin,30.3006,-97.7517,United States,US,USA,Texas,admin,1638716.0,1840019590
+Arlington,Arlington,32.6998,-97.1251,United States,US,USA,Texas,,396394,1840019422
+London,London,51.5000,-0.1167,United Kingdom,GB,GBR,"London, City of",primary,8567000,1826645935

@@ -41,7 +41,6 @@ class TestFile:
         cls.create_file()
         test_data = CsvHandler.read_csv('test.csv')
         JsonHandler.write_json(file_path, test_data)
-        cls.delete_test_file('test.csv')
 
 
 class TestFileHandlers(unittest.TestCase):
