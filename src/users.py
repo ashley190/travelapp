@@ -36,6 +36,7 @@ class UserFile:
         self.city = None
         self.past_searches = JsonHandler.read_json(
             f"{self.path}search_history")
+        self.searchfile = ""
 
     @Decorators.save_and_display_data
     def read_flag_and_save(self, data, flag):
@@ -62,8 +63,9 @@ class UserFile:
                 return item
 
     @Helpers.history_search
-    def search_and_display_data(self, place, file_name):
-        path = f"{self.path}{file_name}"
+    def search_and_display_data(self, place):
+        path = f"{self.path}{self.searchfile}"
+        print(path)
         if place in self.past_searches:
             data = self.retrieve_saved(place, path)
             display_result = Display(data)
