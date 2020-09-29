@@ -1,0 +1,443 @@
+{
+    "data": [
+      {
+        "result_type": "geos",
+        "result_object": {
+          "location_id": "294316",
+          "name": "Lima",
+          "latitude": "-12.072676",
+          "longitude": "-77.03925",
+          "timezone": "America/Lima",
+          "location_string": "Lima, Peru",
+          "photo": {
+            "images": {
+              "small": {
+                "width": "150",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-l/15/33/fc/bc/lima.jpg",
+                "height": "150"
+              },
+              "thumbnail": {
+                "width": "50",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-t/15/33/fc/bc/lima.jpg",
+                "height": "50"
+              },
+              "original": {
+                "width": "4052",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-o/15/33/fc/bc/lima.jpg",
+                "height": "792"
+              },
+              "large": {
+                "width": "550",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-s/15/33/fc/bc/lima.jpg",
+                "height": "108"
+              },
+              "medium": {
+                "width": "250",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-f/15/33/fc/bc/lima.jpg",
+                "height": "49"
+              }
+            },
+            "is_blessed": false,
+            "uploaded_date": "2018-10-30T14:18:19-0400",
+            "caption": "",
+            "id": "355728572",
+            "helpful_votes": "6",
+            "published_date": "2018-10-30T14:18:19-0400",
+            "user": null
+          },
+          "default_options": [
+            {
+              "key": "overview",
+              "name": "Lima Overview"
+            },
+            {
+              "key": "restaurants",
+              "name": "Restaurants"
+            },
+            {
+              "key": "things_to_do",
+              "name": "Things to Do"
+            },
+            {
+              "key": "lodging",
+              "name": "Hotels"
+            },
+            {
+              "key": "vacation_rentals",
+              "name": "Vacation Rentals"
+            },
+            {
+              "key": "flights_to",
+              "name": "Flights"
+            }
+          ],
+          "geo_type": "narrow",
+          "location_subtype": "none",
+          "has_restaurant_coverpage": true,
+          "has_attraction_coverpage": true,
+          "has_curated_shopping_list": false,
+          "show_address": false,
+          "preferred_map_engine": "default",
+          "description": "Lima, founded by Francisco Pizarro in 1535, is a fascinating city and a treasure trove of history. Explore ancient Incan archeological sites, or stroll through the elegant cathedrals and opulent palaces dating from Spanish colonial times. Downtown Lima is crowded, but you'll enjoy exploring the city's neighborhoods—especially the beachfront areas, which have great shopping and dining and fabulous hotels.",
+          "is_localized_description": false,
+          "ancestors": [
+            {
+              "subcategory": [
+                {
+                  "key": "region",
+                  "name": "Region"
+                }
+              ],
+              "name": "Lima Region",
+              "abbrv": null,
+              "location_id": "2656695"
+            },
+            {
+              "subcategory": [
+                {
+                  "key": "country",
+                  "name": "Country"
+                }
+              ],
+              "name": "Peru",
+              "abbrv": null,
+              "location_id": "294311"
+            }
+          ],
+          "parent_display_name": "Peru",
+          "guide_count": "0"
+        },
+        "scope": "local"
+      },
+      {
+        "result_type": "restaurants",
+        "result_object": {
+          "location_id": "8847395",
+          "name": "Lima Peruvian",
+          "latitude": "45.47623",
+          "longitude": "-122.801346",
+          "timezone": "America/Los_Angeles",
+          "location_string": "Beaverton, Oregon",
+          "is_closed": false,
+          "is_long_closed": false,
+          "photo": {
+            "images": {
+              "small": {
+                "width": "150",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-l/0a/ec/cf/5e/photo0jpg.jpg",
+                "height": "150"
+              },
+              "thumbnail": {
+                "width": "50",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-t/0a/ec/cf/5e/photo0jpg.jpg",
+                "height": "50"
+              },
+              "original": {
+                "width": "2048",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-o/0a/ec/cf/5e/photo0jpg.jpg",
+                "height": "2048"
+              },
+              "large": {
+                "width": "550",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-p/0a/ec/cf/5e/photo0jpg.jpg",
+                "height": "550"
+              },
+              "medium": {
+                "width": "450",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-s/0a/ec/cf/5e/photo0jpg.jpg",
+                "height": "450"
+              }
+            },
+            "is_blessed": true,
+            "uploaded_date": "2016-04-16T22:38:12-0400",
+            "caption": "",
+            "id": "183291742",
+            "helpful_votes": "0",
+            "published_date": "2016-04-16T22:38:12-0400",
+            "user": {
+              "user_id": null,
+              "member_id": "0",
+              "type": "user"
+            }
+          },
+          "address": "12090 SW Allen Blvd",
+          "location_subtype": "none",
+          "has_restaurant_coverpage": false,
+          "has_attraction_coverpage": false,
+          "show_address": false,
+          "preferred_map_engine": "default",
+          "ancestors": [
+            {
+              "subcategory": [
+                {
+                  "key": "city",
+                  "name": "City"
+                }
+              ],
+              "name": "Beaverton",
+              "abbrv": null,
+              "location_id": "51765"
+            },
+            {
+              "subcategory": [
+                {
+                  "key": "state",
+                  "name": "State"
+                }
+              ],
+              "name": "Oregon",
+              "abbrv": "OR",
+              "location_id": "28958"
+            },
+            {
+              "subcategory": [
+                {
+                  "key": "country",
+                  "name": "Country"
+                }
+              ],
+              "name": "United States",
+              "abbrv": null,
+              "location_id": "191"
+            }
+          ],
+          "parent_display_name": "Beaverton",
+          "guide_count": "0"
+        },
+        "scope": "local"
+      },
+      {
+        "result_type": "restaurants",
+        "result_object": {
+          "location_id": "6871665",
+          "name": "Lima Peruvian Restaurant",
+          "latitude": "40.617146",
+          "longitude": "-73.909706",
+          "timezone": "America/New_York",
+          "location_string": "Brooklyn, New York",
+          "is_closed": false,
+          "is_long_closed": false,
+          "photo": {
+            "images": {
+              "small": {
+                "width": "150",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-l/0a/01/4c/13/lima-peruvian-restaurant.jpg",
+                "height": "150"
+              },
+              "thumbnail": {
+                "width": "50",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-t/0a/01/4c/13/lima-peruvian-restaurant.jpg",
+                "height": "50"
+              },
+              "original": {
+                "width": "2000",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-o/0a/01/4c/13/lima-peruvian-restaurant.jpg",
+                "height": "1500"
+              },
+              "large": {
+                "width": "550",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-s/0a/01/4c/13/lima-peruvian-restaurant.jpg",
+                "height": "413"
+              },
+              "medium": {
+                "width": "250",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-f/0a/01/4c/13/lima-peruvian-restaurant.jpg",
+                "height": "188"
+              }
+            },
+            "is_blessed": true,
+            "uploaded_date": "2016-01-10T18:48:12-0500",
+            "caption": "Картофель жаренный с колбасками",
+            "id": "167857171",
+            "helpful_votes": "0",
+            "published_date": "2016-01-10T18:48:12-0500",
+            "user": {
+              "user_id": null,
+              "member_id": "0",
+              "type": "user"
+            }
+          },
+          "address": "6620 Avenue U",
+          "location_subtype": "none",
+          "has_restaurant_coverpage": false,
+          "has_attraction_coverpage": false,
+          "show_address": true,
+          "preferred_map_engine": "default",
+          "ancestors": [
+            {
+              "subcategory": [
+                {
+                  "key": "city",
+                  "name": "City"
+                }
+              ],
+              "name": "Brooklyn",
+              "abbrv": null,
+              "location_id": "60827"
+            },
+            {
+              "subcategory": [
+                {
+                  "key": "state",
+                  "name": "State"
+                }
+              ],
+              "name": "New York",
+              "abbrv": "NY",
+              "location_id": "28953"
+            },
+            {
+              "subcategory": [
+                {
+                  "key": "country",
+                  "name": "Country"
+                }
+              ],
+              "name": "United States",
+              "abbrv": null,
+              "location_id": "191"
+            }
+          ],
+          "parent_display_name": "Brooklyn",
+          "guide_count": "0"
+        },
+        "scope": "local"
+      },
+      {
+        "result_type": "restaurants",
+        "result_object": {
+          "location_id": "14928349",
+          "name": "Lima Peruvian Restaurant",
+          "latitude": "40.659714",
+          "longitude": "-73.99893",
+          "timezone": "America/New_York",
+          "location_string": "Brooklyn, New York",
+          "is_closed": false,
+          "is_long_closed": false,
+          "photo": {
+            "images": {
+              "small": {
+                "width": "150",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-l/14/14/89/f3/ceviche-you-need-this.jpg",
+                "height": "150"
+              },
+              "thumbnail": {
+                "width": "50",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-t/14/14/89/f3/ceviche-you-need-this.jpg",
+                "height": "50"
+              },
+              "original": {
+                "width": "1024",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-w/14/14/89/f3/ceviche-you-need-this.jpg",
+                "height": "1365"
+              },
+              "large": {
+                "width": "550",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-p/14/14/89/f3/ceviche-you-need-this.jpg",
+                "height": "733"
+              },
+              "medium": {
+                "width": "338",
+                "url": "https://media-cdn.tripadvisor.com/media/photo-s/14/14/89/f3/ceviche-you-need-this.jpg",
+                "height": "450"
+              }
+            },
+            "is_blessed": true,
+            "uploaded_date": "2018-08-10T16:21:45-0400",
+            "caption": "ceviche - you need this",
+            "id": "336890355",
+            "helpful_votes": "0",
+            "published_date": "2018-08-10T16:21:45-0400",
+            "user": {
+              "user_id": null,
+              "member_id": "0",
+              "type": "user"
+            }
+          },
+          "address": "782 4th Ave",
+          "location_subtype": "none",
+          "has_restaurant_coverpage": false,
+          "has_attraction_coverpage": false,
+          "show_address": true,
+          "preferred_map_engine": "default",
+          "ancestors": [
+            {
+              "subcategory": [
+                {
+                  "key": "city",
+                  "name": "City"
+                }
+              ],
+              "name": "Brooklyn",
+              "abbrv": null,
+              "location_id": "60827"
+            },
+            {
+              "subcategory": [
+                {
+                  "key": "state",
+                  "name": "State"
+                }
+              ],
+              "name": "New York",
+              "abbrv": "NY",
+              "location_id": "28953"
+            },
+            {
+              "subcategory": [
+                {
+                  "key": "country",
+                  "name": "Country"
+                }
+              ],
+              "name": "United States",
+              "abbrv": null,
+              "location_id": "191"
+            }
+          ],
+          "parent_display_name": "Brooklyn",
+          "guide_count": "0"
+        },
+        "scope": "local"
+      },
+      {
+        "result_type": "profiles",
+        "result_object": {
+          "userid": "FDA11E10D85CEC9A82EF2306951322D3",
+          "username": "@Eduardo_GarciaR",
+          "display_name": "Eduardo García - Lima Perú",
+          "is_verified": false,
+          "num_followers": "1",
+          "avatar": {
+            "url_small": "https://media-cdn.tripadvisor.com/media/photo-l/0f/ba/f0/bf/eduardo-garciar.jpg",
+            "url_medium": "https://media-cdn.tripadvisor.com/media/photo-f/0f/ba/f0/bf/eduardo-garciar.jpg",
+            "url_large": "https://media-cdn.tripadvisor.com/media/photo-s/0f/ba/f0/bf/eduardo-garciar.jpg",
+            "url_thumbnail": "https://media-cdn.tripadvisor.com/media/photo-t/0f/ba/f0/bf/eduardo-garciar.jpg",
+            "url_original": "https://media-cdn.tripadvisor.com/media/photo-o/0f/ba/f0/bf/eduardo-garciar.jpg"
+          },
+          "is_following": false
+        },
+        "scope": "local"
+      },
+      {
+        "result_type": "profiles",
+        "result_object": {
+          "userid": "65A45B4D2A2B487E07CC1116F91C9EFD",
+          "username": "@113fusionresto",
+          "display_name": "113 Fusion Restó Barranco Lima Perú",
+          "is_verified": false,
+          "num_followers": "9",
+          "avatar": {
+            "url_small": "https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/ee/10/default-avatar-2020-8.jpg",
+            "url_medium": "https://media-cdn.tripadvisor.com/media/photo-f/1a/f6/ee/10/default-avatar-2020-8.jpg",
+            "url_large": "https://media-cdn.tripadvisor.com/media/photo-s/1a/f6/ee/10/default-avatar-2020-8.jpg",
+            "url_thumbnail": "https://media-cdn.tripadvisor.com/media/photo-t/1a/f6/ee/10/default-avatar-2020-8.jpg",
+            "url_original": "https://media-cdn.tripadvisor.com/media/photo-o/1a/f6/ee/10/default-avatar-2020-8.jpg"
+          },
+          "is_following": false
+        },
+        "scope": "local"
+      }
+    ],
+    "partial_content": false
+  }
