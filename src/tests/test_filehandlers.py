@@ -24,7 +24,7 @@ class TestFile:
 
     @classmethod
     def create_file(cls):
-        with open("test.csv", "w") as file:
+        with open("tests/test.csv", "w") as file:
             writer = csv.writer(file)
             writer.writerow(["city", "city_ascii", "lat", "lng", "country",
                             "iso2", "iso3", "admin_name", "capital",
@@ -39,21 +39,22 @@ class TestFile:
     @classmethod
     def create_test_json(cls, file_path):
         cls.create_file()
-        test_data = CsvHandler.read_csv('test.csv')
+        test_data = CsvHandler.read_csv('tests/test.csv')
         JsonHandler.write_json(file_path, test_data)
+        TestFile.delete_test_file("tests/test.csv")
 
 
 class TestFileHandlers(unittest.TestCase):
     def setUp(self):
         TestFile.create_file()
-        self.test_list = CsvHandler.read_csv("test.csv")
+        self.test_list = CsvHandler.read_csv("tests/test.csv")
         self.test_list_2 = CsvHandler.read_csv("")
-        FileConverter.save_csv_as_json("test.csv", "test.json")
+        FileConverter.save_csv_as_json("tests/test.csv", "test.json")
         self.text_from_json = JsonHandler.read_json("test.json")
         self.text_from_blank = JsonHandler.read_json("fake.json")
 
     def tearDown(self):
-        TestFile.delete_test_file("test.csv", "test.json")
+        TestFile.delete_test_file("tests/test.csv", "test.json")
 
     def test_read_csv(self):
         self.city_1 = self.test_list[0]["city_ascii"]

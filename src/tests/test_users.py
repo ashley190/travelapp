@@ -61,7 +61,7 @@ class TestUserFile(unittest.TestCase):
             TestFile.delete_test_file(
                 "tests/resources/test/Melbourne-Australia.json")
         except FileNotFoundError:
-            print("File Deleted")
+            pass
 
     def test_file_instantiation(self):
         self.assertListEqual(
