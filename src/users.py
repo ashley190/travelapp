@@ -1,6 +1,6 @@
 from file_handler import JsonHandler
 from display import Display
-from helpers import Helpers, Decorators
+from helpers import Decorators
 
 
 class User:
@@ -62,7 +62,7 @@ class UserFile:
             if "Region" in item and item["Region"] == place:
                 return item
 
-    @Helpers.history_search
+    @Decorators.history_search
     def search_and_display_data(self, place):
         path = f"{self.path}{self.searchfile}"
         print(path)

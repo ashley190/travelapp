@@ -1,5 +1,7 @@
 from users import User, UserFile
-from test_filehandlers import TestFile
+from tests.test_filehandlers import TestFile
+from tests.test_poi_data import TestPoiData
+from poi_data import PoiData
 import unittest
 from unittest.mock import patch
 
@@ -43,6 +45,24 @@ class TestUserFile(unittest.TestCase):
             ["Illinois", "United States"], "tests/resources/test/")
         self.test_file3.city = ["Chicago", "United States"]
 
+        # set up for test_read_flag_and_save
+        self.test_file4 = UserFile(
+            ["Victoria", "Australia"], "tests/resources/test/")
+        self.test_file4.city = ["Melbourne", "Australia"]
+        testapidata = TestPoiData()
+        testapidata.setUp()
+        testclass1 = PoiData(testapidata.city_info1, testapidata.poi_results1)
+        testclass1.extract()
+        testclass1.consolidate_categories()
+        self.test_data = testclass1.city_info
+
+    def tearDown(self):
+        try:
+            TestFile.delete_test_file(
+                "tests/resources/test/Melbourne-Australia.json")
+        except FileNotFoundError:
+            print("File Deleted")
+
     def test_file_instantiation(self):
         self.assertListEqual(
             self.test_file1.past_searches, self.test_file2.past_searches)
@@ -58,3 +78,11 @@ class TestUserFile(unittest.TestCase):
         self.assertTrue(self.test_file1.search_and_display_data(test1_place))
         self.assertFalse(self.test_file2.search_and_display_data(test2_place))
         self.assertTrue(self.test_file3.search_and_display_data(test3_place))
+
+    def test_read_flag_and_save(self):
+        result = self.test_file4.read_flag_and_save(self.test_data, "city")
+        self.assertNotIn("Region", result[0])
+        self.assertIn("City", result[0])
+        self.assertTrue(self.test_file4.city == result[0]["City"])
+        self.assertEqual(
+            result[1], "tests/resources/test/Melbourne-Australia.json")

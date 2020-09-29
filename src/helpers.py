@@ -66,13 +66,6 @@ class Helpers:
                 ads_removed.append(item)
         return ads_removed
 
-    @classmethod
-    def history_search(self, func):
-        def wrapper(*args, **kwargs):
-            func_value = func(*args, **kwargs)
-            return func_value
-        return wrapper
-
 
 class Decorators:
     @classmethod
@@ -84,5 +77,12 @@ class Decorators:
             JsonHandler.write_json(func_value[1], content)
             display_content = Display(content[0])
             display_content.display_saved_data()
+            return func_value
+        return wrapper
+
+    @classmethod
+    def history_search(self, func):
+        def wrapper(*args, **kwargs):
+            func_value = func(*args, **kwargs)
             return func_value
         return wrapper
