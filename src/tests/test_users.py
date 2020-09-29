@@ -1,6 +1,6 @@
 from users import User, UserFile
-from tests.test_filehandlers import TestFile
-from tests.test_poi_data import TestPoiData
+from tests.test_filehandlers import TestFile    # type: ignore
+from tests.test_poi_data import TestPoiData     # type: ignore
 from poi_data import PoiData
 import unittest
 from unittest.mock import patch
