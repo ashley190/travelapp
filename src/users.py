@@ -21,7 +21,7 @@ class User:
 
         Args:
             key_file (str, optional): file path to API_KEY variable.
-            Defaults to ".env".
+                Defaults to ".env".
 
         Returns:
             True if key exists, False if file does not exist.
@@ -46,7 +46,7 @@ class User:
 
         Args:
             file_path (str, optional): file path to API_KEY variable.
-            Defaults to ".env".
+                Defaults to ".env".
         """
         print("""
     You can obtain an API key when you sign up
