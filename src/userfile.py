@@ -30,7 +30,7 @@ class UserFile:
         # searches. Retrieved from the
         # resources/<user.name>/search_history file.
         self.past_searches: list = JsonHandler.read_json(
-            f"{self.path}search_history")
+            f"{self.path}search_history.json")
 
         #: str: defined externally as the level of search(region/city) is made.
         # Determines the file name for lookup and/or save.
@@ -107,11 +107,11 @@ class UserFile:
                 f"{self.path}{self.region[0]}-{self.region[1]}.json")
             self.past_searches.append(self.region)
             JsonHandler.write_json(
-                f"{self.path}search_history", self.past_searches)
+                f"{self.path}search_history.json", self.past_searches)
         elif flag == "city":
             final_format = {"City": self.city, "Data": data}
             file_path = f"{self.path}{self.city[0]}-{self.city[1]}.json"
             self.past_searches.append(self.city)
             JsonHandler.write_json(
-                f"{self.path}search_history", self.past_searches)
+                f"{self.path}search_history.json", self.past_searches)
         return final_format, file_path
