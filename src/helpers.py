@@ -79,10 +79,3 @@ class Decorators:
             display_content.display_saved_data()
             return func_value
         return wrapper
-
-    @classmethod
-    def history_search(self, func):
-        def wrapper(*args, **kwargs):
-            func_value = func(*args, **kwargs)
-            return func_value
-        return wrapper

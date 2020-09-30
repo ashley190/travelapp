@@ -10,7 +10,9 @@ class User:
         self.name: str = input("What is your name?\n")
 
         #: str: defines file path for saving and retrieving data
-        # based on user name
+        # based on user name. User's searches will be retrieved and saved
+        # under a folder named using self.name as a subdirectory
+        # under src/resources.
         self.path: str = f"resources/{self.name}/"
 
     def API_key_check(self, key_file=".env") -> bool:

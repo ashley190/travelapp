@@ -30,15 +30,15 @@ if not history_check:
     user_file.searchfile = f"{user_file.city[0]}-{user_file.city[1]}.json"
     history_check = user_file.search_and_display_data(user_file.city)
 
-# look up TripAdvisorAPI if region and city does not exist in cached file
-# Extract and consolidate data
-# Save and display data
-if not history_check:
-    search_api = TripAdvisorApi(user_file.region, user_file.city)
-    api_results = search_api.poi_search()
-    results_data = PoiData(api_results[0], api_results[1])
-    results_data.extract()
-    results_data.consolidate_categories()
+# # look up TripAdvisorAPI if region and city does not exist in cached file
+# # Extract and consolidate data
+# # Save and display data
+# if not history_check:
+#     search_api = TripAdvisorApi(user_file.region, user_file.city)
+#     api_results = search_api.poi_search()
+#     results_data = PoiData(api_results[0], api_results[1])
+#     results_data.extract()
+#     results_data.consolidate_categories()
 
-    # Save and display data
-    user_file.read_flag_and_save(results_data.city_info, api_results[2])
+#     # Save and display data
+#     user_file.read_flag_and_save(results_data.city_info, api_results[2])
