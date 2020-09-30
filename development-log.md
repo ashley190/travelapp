@@ -9,3 +9,4 @@
 27-September: Finished coding MVP. Discovered bug in saving history list. 
 28-September: Changed file formats for saving and retrieving. Many bugs found when integrating save and retrieve function. Fixed bugs in code. Implemented error handling for API queries. Write automated tests for file_handlers and users. Found gap in worldcities.csv that has been corrected and db updated.
 29-September: Another day of testing. Complete writing automated test for all functionality in application.
+30-September: Completed docstrings and type hinting and comments for main application code and tests.
