@@ -87,7 +87,7 @@ class TripAdvisorApi:
         Returns:
             dict: Dictionary containing a list of Points of Interests(POIs)
                 from the attractions query using a locations location_id.
-        """        
+        """
         url: str = self.endpoint + self.poi_suffix
         querystring: dict = {"location_id": (location_id)}
         poi_query: ApiQuery = ApiQuery(url, querystring, self.headers)
@@ -106,7 +106,7 @@ class TripAdvisorApi:
             tuple: A tuple containing (location results, poi results and
             flag) depending on whether a regional level search was
             successful or a city level search was successful.
-        """        
+        """
         region_info: dict = self.location_search(self.region_and_country)
         region_pois: dict = self.get_poi(region_info["location_id"])
         if "errors" in region_pois:

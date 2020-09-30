@@ -3,20 +3,38 @@ from simple_term_menu import TerminalMenu   # type: ignore
 
 
 class Database:
+    """Generates Database object."""
+
     def __init__(self, places_file: str = 'resources/worldcities.json'):
-        self.places = JsonHandler.read_json(places_file)
+        """Initialises Database object with two instance attributes.
+
+        Using data from places_file (list of cities in json format), the
+        cities_db dictionary is created using the create_cities_db()
+        method and stored as an instance attribute.
+
+        Args:
+            places_file (str, optional): file path pointing to json
+                file for data lookup and extraction during instantiation.
+                Defaults to 'resources/worldcities.json'.
+        """
+        self.places: list = JsonHandler.read_json(places_file)
         self.cities_db: dict = self.create_cities_db()
 
     def create_cities_db(self) -> dict:
+        """Creates cities_db from json file output in a predefined format.
+
+        Extracts country, state and city data from json file output and
+        store it in standardised format.
+
+        Returns:
+            dict: Dictionary in the following format -  {country: {
+                state/admin_area:[city1, city2, city3, etc...]}}
         """
-        creates database in the following format
-        {country: {state/admin_area:[city1, city2, city3, etc...]}}
-        """
-        database = {}
+        database: dict = {}
         for place in self.places:
-            country = place["country"]
-            state = place["admin_name"]
-            city = place["city_ascii"]
+            country: str = place["country"]
+            state: str = place["admin_name"]
+            city: str = place["city_ascii"]
             if country not in database:
                 database[country] = {state: [city]}
             elif state not in database[country]:
@@ -27,7 +45,23 @@ class Database:
 
 
 class Places(Database):
-    def select_country(self):
+    """Inherites database from Database class with additional selection methods
+
+    Args:
+        Database (class): Database class that creates a standardised cities_db
+            when instantiated as an object.
+    """
+    def select_country(self) -> str:
+        """Creates a selection menu from a list of countries for user selection.
+
+        Creates a list of countries from the instance attribute cities_db;
+        create a selection menu based on the list of countries for user
+        selection; Searches for country from the list of countries based
+        on the index returned from user's selection.
+
+        Returns:
+            str: Selected country
+        """
         list_of_countries: list = [country for country in self.cities_db]
         countries_menu: TerminalMenu = TerminalMenu(
             list_of_countries,
@@ -37,8 +71,19 @@ class Places(Database):
         return selected_country
 
     def select_region(self) -> list:
-        selected_country = self.select_country()
-        country_regions = self.cities_db[selected_country]
+        """Creates a selection menu from a list of regions/state for user selection.
+
+        Creates a list of regions/states from the instance attribute cities_db
+        based on the previously selected country; create a selection menu based
+        on the list of regions/state for user selection; Searches for
+        regions/state from the list of regions/state based on the index
+        returned from user's selection.
+
+        Returns:
+            str: Selected region/state
+        """
+        selected_country: str = self.select_country()
+        country_regions: dict = self.cities_db[selected_country]
         regions: list = [region for region in country_regions if region != ""]
         regions_menu: TerminalMenu = TerminalMenu(
             regions,
@@ -48,9 +93,20 @@ class Places(Database):
         return [selected_region, selected_country]
 
     def select_city(self, selected_region_and_country: list) -> list:
+        """Creates a selection menu from a list of cities for user selection.
+
+        Creates a list of cities from the instance attribute cities_db
+        based on the previously selected country and region/state; create a
+        selection menu based on the list of rcities for user selection;
+        Searches for city from the list of cities based on the
+        index returned from user's selection.
+
+        Returns:
+            str: Selected region/state
+        """
         selected_region, selected_country = selected_region_and_country
-        regions_cities = self.cities_db[selected_country][selected_region]
-        cities: list = [city for city in regions_cities if city != []]
+        db_cities: list = self.cities_db[selected_country][selected_region]
+        cities: list = [city for city in db_cities if city != []]
         cities_menu: TerminalMenu = TerminalMenu(
             cities,
             title=f"Select a city in {selected_region}")
