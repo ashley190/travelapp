@@ -41,4 +41,4 @@ if not history_check:
     results_data.consolidate_categories()
 
     # Save and display data
-    user_file.read_flag_and_save(results_data.city_info, api_results[2])
+    user_file.read_flag_and_save(results_data.place_info, api_results[2])

@@ -107,6 +107,7 @@ class TripAdvisorApi:
             flag) depending on whether a regional level search was
             successful or a city level search was successful.
         """
+        print("Constructing and sending query. Please wait a moment...")
         region_info: dict = self.location_search(self.region_and_country)
         region_pois: dict = self.get_poi(region_info["location_id"])
         if "errors" in region_pois:

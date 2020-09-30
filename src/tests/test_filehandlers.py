@@ -5,6 +5,16 @@ import unittest
 
 
 class TestFile:
+    """class to create TestFile object
+
+    Creates TestFile object containing test csv data and methods for creating
+    and deleting test files.
+
+    Attributes:
+        data (list): list of data to be converted into csv format
+
+    """
+
     data = [
         ["Tokyo", "Tokyo", "35.6850", "139.7514", "Japan",
             "JP", "JPN", "Tōkyō", "primary", "35676000", "1392685764"],
@@ -24,6 +34,8 @@ class TestFile:
 
     @classmethod
     def create_file(cls):
+        """Writes test data into csv format."""
+
         with open("tests/test.csv", "w") as file:
             writer = csv.writer(file)
             writer.writerow(["city", "city_ascii", "lat", "lng", "country",
@@ -33,19 +45,30 @@ class TestFile:
 
     @classmethod
     def delete_test_file(cls, *file_path):
+        """Delete test file(s)
+
+        Can accept more than one file path for file deletion.
+        """
         for file in file_path:
             os.remove(file)
 
     @classmethod
-    def create_test_json(cls, file_path):
+    def create_test_json(cls):
         cls.create_file()
-        test_data = CsvHandler.read_csv('tests/test.csv')
-        JsonHandler.write_json(file_path, test_data)
+        FileConverter.save_csv_as_json("tests/test.csv", "tests/test.json")
+    #     # test_data = CsvHandler.read_csv('tests/test.csv')
+    #     # JsonHandler.write_json(file_path, test_data)
         TestFile.delete_test_file("tests/test.csv")
 
 
 class TestFileHandlers(unittest.TestCase):
+    """Test case for testing the file_handler module."""
+
     def setUp(self):
+        """Sets up test variables for testing of the file_handler module.
+
+        Sets up test variables from both csv and json sources.
+        """
         TestFile.create_file()
         self.test_list = CsvHandler.read_csv("tests/test.csv")
         self.test_list_2 = CsvHandler.read_csv("")
@@ -54,9 +77,18 @@ class TestFileHandlers(unittest.TestCase):
         self.text_from_blank = JsonHandler.read_json("fake.json")
 
     def tearDown(self):
+        """Clean up test files created during setUp."""
+
         TestFile.delete_test_file("tests/test.csv", "test.json")
 
     def test_read_csv(self):
+        """Tests the CsvHandler.read_csv() module.
+
+        Tests against testing data generated during setUp using the
+        CsvHandler.read_csv() module(self.test_list, self.test_list_2).
+        Tests for presence/absence and correctness of content,
+        length of list variables.
+        """
         self.city_1 = self.test_list[0]["city_ascii"]
         self.country_1 = self.test_list[0]["country"]
         self.state_1 = self.test_list[0]["admin_name"]
@@ -68,9 +100,16 @@ class TestFileHandlers(unittest.TestCase):
                          ("Tokyo", "Japan", "Tōkyō"))
         self.assertEqual((self.city_2, self.country_2, self.state_2),
                          ("Paris", "France", "Île-de-France"))
-        self.assertEqual((self.test_list_2), None)
+        self.assertEqual((self.test_list_2), [])
 
     def test_save_csv_as_json(self):
+        """Tests the FileConverter.save_csv_as_json method.
+
+        Tests using testing data generated during setup with the
+        FileConverter.save_csv_as_json method (self.test_from_json,
+        self.test_from_blank). Tests for presence/absence and correctness
+        of content, and length of list variables.
+        """
         self.city_3 = self.text_from_json[1]["city_ascii"]
         self.country_3 = self.text_from_json[1]["country"]
         self.state_3 = self.text_from_json[1]["admin_name"]
@@ -84,6 +123,13 @@ class TestFileHandlers(unittest.TestCase):
         self.assertEqual((self.text_from_blank), [])
 
     def test_read_and_write_json(self):
+        """Tests modules in the JsonHandler class.
+
+        Asserts presence/absence of data in self.text_from_json and
+        self.text_from_blank; Appends new data to self.text_from_json and
+        save to a new file ("test2.json"). Tests original and new files for
+        new data and length; Deletes test2.json when completed.
+        """
         self.assertIsNotNone(self.text_from_json)
         self.assertEqual(self.text_from_blank, [])
         self.text_from_json.append(
