@@ -1,4 +1,5 @@
-from users import User, UserFile
+from users import User
+from userfile import UserFile
 from places import Places
 from get_poi import TripAdvisorApi
 from poi_data import PoiData
@@ -7,10 +8,10 @@ from poi_data import PoiData
 # If no API key, user given instructions to subscribe.
 # API_key saved as a persistent environment variable in src/.env
 user = User()
-key_check = user.API_key_check()
-while not key_check:
+key_exist = user.API_key_check()
+while not key_exist:
     user.set_API_key()
-    key_check = user.API_key_check()
+    key_exist = user.API_key_check()
 
 # place selection
 place = Places()

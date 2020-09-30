@@ -1,0 +1,49 @@
+from file_handler import JsonHandler
+from display import Display
+from helpers import Decorators
+
+
+class UserFile:
+    def __init__(self, region, path):
+        self.path = path
+        self.region = region
+        self.city = None
+        self.past_searches = JsonHandler.read_json(
+            f"{self.path}search_history")
+        self.searchfile = ""
+
+    @Decorators.save_and_display_data
+    def read_flag_and_save(self, data, flag):
+        if flag == "region":
+            final_format = {"Region": self.region, "Data": data}
+            file_path = f"{self.path}{self.region[0]}-{self.region[1]}.json"
+            self.past_searches.append(self.region)
+            JsonHandler.write_json(
+                f"{self.path}search_history", self.past_searches)
+        elif flag == "city":
+            final_format = {"City": self.city, "Data": data}
+            file_path = f"{self.path}{self.city[0]}-{self.city[1]}.json"
+            self.past_searches.append(self.city)
+            JsonHandler.write_json(
+                f"{self.path}search_history", self.past_searches)
+        return final_format, file_path
+
+    def retrieve_saved(self, place, file_path):
+        content = JsonHandler.read_json(file_path)
+        for item in content:
+            if "City" in item and item["City"] == place:
+                return item
+            if "Region" in item and item["Region"] == place:
+                return item
+
+    @Decorators.history_search
+    def search_and_display_data(self, place):
+        path = f"{self.path}{self.searchfile}"
+        print(path)
+        if place in self.past_searches:
+            data = self.retrieve_saved(place, path)
+            display_result = Display(data)
+            display_result.display_saved_data()
+            return True
+        else:
+            return False
