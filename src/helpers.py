@@ -70,6 +70,17 @@ class Helpers:
 class Decorators:
     @classmethod
     def save_and_display_data(cls, func):
+        """Save and display data outputted by inner function.
+
+        Takes the output of the inner function consisting of
+        final formatted content and file path; saves and display
+        data according to predefined file naming rules and display
+        format.
+
+        Args:
+            func (func): a function that outputs data and file path
+            for saving.
+        """
         def wrapper(*args, **kwargs):
             func_value = func(*args, **kwargs)
             content = JsonHandler.read_json(func_value[1])

@@ -26,13 +26,15 @@ class User:
         Returns:
             True if key exists, False if file does not exist.
         """
+        key_exist = False
         try:
             with open(key_file, "r") as file:
                 content = file.read()
                 if "API_KEY" in content:
-                    return True
+                    key_exist = True
         except FileNotFoundError:
-            return False
+            key_exist = False
+        return key_exist
 
     def set_API_key(self, file_path=".env"):
         """Sets user's API_KEY to src/.env.

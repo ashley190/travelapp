@@ -47,7 +47,7 @@ class Places(Database):
         selected_region: str = regions[region_index]
         return [selected_region, selected_country]
 
-    def select_city(self, selected_region_and_country: tuple) -> list:
+    def select_city(self, selected_region_and_country: list) -> list:
         selected_region, selected_country = selected_region_and_country
         regions_cities = self.cities_db[selected_country][selected_region]
         cities: list = [city for city in regions_cities if city != []]

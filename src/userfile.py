@@ -6,7 +6,7 @@ from helpers import Decorators
 class UserFile:
     """Generates UserFile object."""
 
-    def __init__(self, region, path):
+    def __init__(self, region: list, path: str):
         """Initialises UserFile object with four instance attributes.
 
         Args:
@@ -36,7 +36,7 @@ class UserFile:
         # Determines the file name for lookup and/or save.
         self.searchfile: str = ""
 
-    def retrieve_saved(self, place, file_path) -> dict:
+    def retrieve_saved(self, place: list, file_path: str) -> dict:
         """Retrieves content of a previously saved places file.
 
         Args:
@@ -47,40 +47,63 @@ class UserFile:
 
         Returns:
             dict: raw content from location save file.
-        """        
+        """
         content: list = JsonHandler.read_json(file_path)
         retrieved: dict = {}
         for item in content:
             if "City" in item and item["City"] == place:
                 retrieved = item
             if "Region" in item and item["Region"] == place:
-                retrieved =  item
+                retrieved = item
         return retrieved
 
-    def search_and_display_data(self, place):
-        """[summary]
+    def search_and_display_data(self, place: list) -> bool:
+        """Retrieves location file content and display content
+        if found.
 
         Args:
-            place ([type]): [description]
+            place (list): [region, country] or [city, country] depending
+            on the level of the search.
 
         Returns:
-            [type]: [description]
-        """        
-        path = f"{self.path}{self.searchfile}"
+            bool: True if process is successful, False otherwise.
+        """
+        file_found: bool = False
+        path: str = f"{self.path}{self.searchfile}"
         if place in self.past_searches:
-            data = self.retrieve_saved(place, path)
-            display_result = Display(data)
+            data: dict = self.retrieve_saved(place, path)
+            display_result: Display = Display(data)
             display_result.display_saved_data()
-            return True
+            file_found = True
         else:
-            return False
+            file_found = False
+        return file_found
 
     @Decorators.save_and_display_data
-    def read_flag_and_save(self, data, flag):
+    def read_flag_and_save(self, data: dict, flag: str) -> tuple:
+        """Saves formatted content into a location file for future lookup.
 
+        Formats retrieved location data into a uniform format and save it
+        in a predefined file name for future lookup.
+        User's past searches list updated with the latest location search.
+
+        Args:
+            data (dict): processed location data from city_info attribute
+            from a PoiData object. This is obtained after running the extract()
+            and consolidate_categories() methods on the PoiData instance.
+            flag (str): obtained from the output of the get_poi method of a
+            TripadvisorApi instance. Informs on the level of search
+            (region/city) that was conducted during the API search.
+
+        Returns:
+            tuple: returns final formatted content and file path for
+            save_and_display_data decorator to perform
+            save and display of data.
+        """
         if flag == "region":
-            final_format = {"Region": self.region, "Data": data}
-            file_path = f"{self.path}{self.region[0]}-{self.region[1]}.json"
+            final_format: dict = {"Region": self.region, "Data": data}
+            file_path: str = (
+                f"{self.path}{self.region[0]}-{self.region[1]}.json")
             self.past_searches.append(self.region)
             JsonHandler.write_json(
                 f"{self.path}search_history", self.past_searches)
@@ -91,9 +114,3 @@ class UserFile:
             JsonHandler.write_json(
                 f"{self.path}search_history", self.past_searches)
         return final_format, file_path
-
-# test = UserFile(["Chicago", "United States"], "resources/ash/")
-# content = test.retrieve_saved(["Chicago", "United States"], "resources/ash/Chicago-United States.json")
-# # print(type(content))
-# print(type(test.past_searches))
-# print(test.past_searches)
