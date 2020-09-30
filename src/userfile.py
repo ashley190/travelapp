@@ -36,7 +36,7 @@ class UserFile:
         # Determines the file name for lookup and/or save.
         self.searchfile: str = ""
 
-    def retrieve_saved(self, place, file_path) -> list:
+    def retrieve_saved(self, place, file_path) -> dict:
         """Retrieves content of a previously saved places file.
 
         Args:
@@ -48,12 +48,14 @@ class UserFile:
         Returns:
             dict: raw content from location save file.
         """        
-        content = JsonHandler.read_json(file_path)
+        content: list = JsonHandler.read_json(file_path)
+        retrieved: dict = {}
         for item in content:
             if "City" in item and item["City"] == place:
-                return item
+                retrieved = item
             if "Region" in item and item["Region"] == place:
-                return item
+                retrieved =  item
+        return retrieved
 
     def search_and_display_data(self, place):
         """[summary]
