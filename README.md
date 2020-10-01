@@ -3,7 +3,7 @@
 ## User Guide
 ### Installing Requirements and obtaining API key
 In order for this application to run:-
-1. Ensure you have Python 3.8 and python3.8-venv installed on your system.
+1. Ensure you have Python 3.8, python3.8-venv and python3-pip installed on your system.
 2. Clone the application onto your system from https://github.com/ashley190/travelapp
 3. Navigate to the travelapp folder and activate the python3.8 virtual environment.
 4. Install application dependencies within the Python3.8 virtual environment by running `pip install -r requirements.txt` on your terminal.
