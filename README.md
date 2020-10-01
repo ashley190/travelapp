@@ -85,6 +85,8 @@ The implementation of the Travelapp application was based around the features de
 
 ### Planning and resource gathering
 The first three days were spent on searching for a suitable API for travel queries and creating test queries and analysing the responses. After deciding on the suitable (and free) API, plans were made on how to construct queries for the TripAdvisor API that requires a location to begin search. 
+![Planning and resource gathering](docs/2009-Projectscreenshot.png)
+Project status - 20 Sep
 
 ### Set up project on Github and CI workflow
 Along with the resource gathering phase, the project was initialised on GitHub and a Continuous Integration(CI) workflow was written for several tasks to be automated upon pushing code from a local development environment into GitHub. Tasks include:-
@@ -92,6 +94,8 @@ Along with the resource gathering phase, the project was initialised on GitHub a
     2. Style check using flake8
     3. Type hinting checks using mypy.
 These tasks ensure that good quality code was being integrated with the source code on GitHub.
+![GITHub and CI setup](docs/2209-Projectscreenshot.png)
+Project status - 22 Sep
 
 ### Code planning
 Planning have to be made around the method to obtain user's input when it comes to city selection to minimise errors usually introduced by manual typing. A database of cities was found on SimpleMaps to construct a selection menu for user selection with a good representation of 15000 cities/places around the world. 
@@ -107,9 +111,13 @@ A majority of the coding work went into creating the user selection menu, breaki
 2. Continuously test functionality of new feature
 3. Fix bugs as they arise and keep on top of styling checks.
 4. Continuously pushing code to GitHub and fix errors when found.
+![Coding complete](docs/2709-Projectscreenshot.png)
+Project status - 27 Sep
 
 ### Automated testing
 Automated testing were written initially along with code up to the point that the user selection menu was implemented. After that, tests were written after coding of the app was complete in order to identify crucial features/ code within the app to test. Automated tests took 3 days to complete after the MVP was completed.
+![Automated testing complete](docs/2909-Projectscreenshot.png)
+Project status - 29 Sep
 
 ### Documentation
 As a way of checking code, documentation and type hinting were completed once the MVP and automated tests were completed. This allowed the developer to go over all the code for both documentation purposes and review.
