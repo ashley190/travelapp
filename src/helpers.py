@@ -101,7 +101,7 @@ class Helpers:
 
     @classmethod
     def geo_search(cls, target: dict):
-        """Searches for "geos" related data from API query response
+        """Searches for "geos" related data from API  response
 
         Args:
             target (dict): target dictionary usually resulting from the

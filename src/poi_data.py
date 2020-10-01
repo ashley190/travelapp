@@ -2,7 +2,7 @@ from helpers import Helpers
 
 
 class PoiData:
-    """Creates PoiData object for consolidation of data"""
+    """Creates PoiData object for data cleaning and formatting."""
 
     def __init__(self, place_info: dict, poi_results: dict):
         """Creates two instance attributes upon instantiation

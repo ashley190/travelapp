@@ -1,6 +1,7 @@
 from file_handler import JsonHandler
 from display import Display
 from helpers import Decorators
+import os
 
 
 class UserFile:
@@ -14,9 +15,12 @@ class UserFile:
                 a Places object.
             path (str): Defined in the User object's path attribute.
         """
-        #: str:  defines path to folder within which search
-        # results are saved and retrieved.
+        #: str:  defines path to folder where search results are saved
+        # and retrieved. Creates directory if it does not already exist
+        # in the defined file path
         self.path: str = path
+        if not os.path.exists(self.path):
+            os.makedirs(self.path)
 
         #: list: region as selected using the select_region method in a
         # Places object

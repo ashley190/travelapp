@@ -15,7 +15,7 @@ class User:
         # under src/resources.
         self.path: str = f"resources/{self.name}/"
 
-    def API_key_check(self, key_file=".env") -> bool:
+    def API_key_check(self, key_file: str = ".env") -> bool:
         """Check for user's API key stored in .env file.
         File path must be src/.env for the application to work.
 

@@ -29,7 +29,7 @@ class TripAdvisorApi:
             "x-rapidapi-key": os.getenv("API_KEY")
             }
 
-    def __init__(self, region, city):
+    def __init__(self, region: list, city: list):
         """initialises TripAdvisorApi object with search fields.
 
         Args:

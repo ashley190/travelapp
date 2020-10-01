@@ -45,7 +45,7 @@ class Database:
 
 
 class Places(Database):
-    """Inherites database from Database class with additional selection methods
+    """Inherits database from Database class with additional selection methods
 
     Args:
         Database (class): Database class that creates a standardised cities_db
