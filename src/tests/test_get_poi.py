@@ -5,7 +5,7 @@ import sys
 from file_handler import JsonHandler
 
 
-class TestApiGet(unittest.TestCase):
+class TestTripAdvisorApi(unittest.TestCase):
     """Test case for testing TripAdvisorApi instance methods."""
 
     def setUp(self):

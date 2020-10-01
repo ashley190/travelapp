@@ -6,7 +6,7 @@ from poi_data import PoiData
 
 
 class TestUserFile(unittest.TestCase):
-    """Test case for testing the userfile module."""
+    """Test case for testing of UserFile objects."""
 
     def setUp(self):
         """Sets up test UserFile objects.
