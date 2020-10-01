@@ -92,7 +92,7 @@ Travelapp is an application that helps retrieve, save and display information ab
 
 The above application logic chart is color coded to represent the objects used to perform the different functionalities throughout the flow of the application.
 
-## Software Implementation Plan
+## Software Implementation
 
 The implementation of the Travelapp application was based around the features defined under "Application Features".
 
