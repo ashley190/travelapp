@@ -67,9 +67,11 @@ class Display:
             print("Description:")
             self.wrap_paragraph(self.data["Data"]["description"])
         if "City" in self.data:
-            print(f"""Here are some places of interest in
-            {self.data['City'][0]}, {self.data['City'][1]}""")
+            city = self.data['City'][0]
+            country = self.data['City'][1]
+            print(f"Here are some places of interest in {city}, {country}")
         elif "Region" in self.data:
-            print(f"""Here are some places of interest in
-            {self.data['Region'][0]}, {self.data['Region'][1]}""")
+            region = self.data['Region'][0]
+            country = self.data['Region'][1]
+            print(f"Here are some places of interest in {region}, {country}")
         self.poi_data_tables()
