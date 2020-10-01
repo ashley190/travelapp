@@ -12,6 +12,7 @@ key_exist = user.API_key_check()
 while not key_exist:
     user.set_API_key()
     key_exist = user.API_key_check()
+user.set_attributes()
 
 # place selection
 place = Places()

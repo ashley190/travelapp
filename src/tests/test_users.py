@@ -1,6 +1,6 @@
 import unittest
-from unittest.mock import patch
-from users import User
+from unittest.mock import patch, Mock
+from users import User, os
 from tests.test_filehandlers import TestFile    # type: ignore
 
 
@@ -8,7 +8,7 @@ class TestUserClass(unittest.TestCase):
     """Test case for testing User objects."""
 
     @patch("builtins.input",
-           side_effect=["testuser1", "key123", "testuser2", "key456"])
+           side_effect=["key123", "key456", "testuser1", "testuser2"])
     def setUp(self, mock_input: str):
         """Sets up test variables for testing of User object.
 
@@ -16,23 +16,25 @@ class TestUserClass(unittest.TestCase):
             mock_input (str): mock user inputs each time builtins.input
                 is called. Sequence of input determined by patch side effects.
         """
+        os.execl = Mock()
         self.testuser1 = User()
         self.testuser1.set_API_key("test1")
         self.testuser2 = User()
         self.testuser2.set_API_key("test2")
+        self.testuser1.set_attributes()
+        self.testuser2.set_attributes()
 
     def tearDown(self):
         """Clean up test files created during setUp and testing."""
 
         TestFile.delete_test_file("test1", "test2")
 
-    def test_user_instantiation(self):
+    def test_set_attributes(self):
         """Tests User object instantiation.
 
         Tests for presence and correctness of instance attributes of
         test variables.
         """
-
         self.assertTrue(self.testuser1.name == "testuser1")
         self.assertTrue(self.testuser2.name == "testuser2")
         self.assertTrue(self.testuser1.path == "resources/testuser1/")

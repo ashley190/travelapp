@@ -1,7 +1,11 @@
+import os
+import sys
+
+
 class User:
     """Generates user object."""
 
-    def __init__(self):
+    def set_attributes(self):
         """Initialises user object.
 
         Takes in user input to generate instance attributes.
@@ -42,7 +46,8 @@ class User:
         Prints instruction for user to obtain API key and subscribe to the
         RapidApi TripAdvisor API, prompt user to enter API_KEY and store
         in the src/.env folder to be accessed as a persistent environment
-        variable. This file is not saved in git.
+        variable. Program will restart once this is saved. This file is
+        not saved in git.
 
         Args:
             file_path (str, optional): file path to API_KEY variable.
@@ -56,4 +61,7 @@ class User:
         user_key: str = input("Please enter your API key here\n")
         with open(file_path, "w") as file:
             file.write(f"API_KEY={user_key}")
-            print("API key saved.")
+        print("API key saved.")
+        # Program restarts after API_key is saved.
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
