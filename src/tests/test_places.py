@@ -12,7 +12,7 @@ class TestCitiesDbClass(unittest.TestCase):
         and methods.
         """
         TestFile.create_test_json()
-        self.testplaces = Database("tests/test.json")
+        self.testplaces: Database = Database("tests/test.json")
 
     def tearDown(self):
         """Cleans up files created during setUp.

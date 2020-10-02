@@ -3,7 +3,7 @@ from simple_term_menu import TerminalMenu   # type: ignore
 
 
 class Database:
-    """Generates Database object."""
+    """Database class to create database of cities"""
 
     def __init__(self, places_file: str = 'resources/worldcities.json'):
         """Initialises Database object with two instance attributes.
@@ -54,9 +54,9 @@ class Places(Database):
     def select_country(self) -> str:
         """Creates a selection menu from a list of countries for user selection.
 
-        Creates a list of countries from the instance attribute cities_db;
-        create a selection menu based on the list of countries for user
-        selection; Searches for country from the list of countries based
+        Creates a list of countries from the inherited instance attribute
+        cities_db; create a selection menu based on the list of countries for
+        user selection; Searches for country from the list of countries based
         on the index returned from user's selection.
 
         Returns:
@@ -97,7 +97,7 @@ class Places(Database):
 
         Creates a list of cities from the instance attribute cities_db
         based on the previously selected country and region/state; create a
-        selection menu based on the list of rcities for user selection;
+        selection menu based on the list of cities for user selection;
         Searches for city from the list of cities based on the
         index returned from user's selection.
 
