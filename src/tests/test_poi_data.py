@@ -22,7 +22,7 @@ class TestPoiData(unittest.TestCase):
         Test instance attributes of a PoiData object prior to and after
         running the extract() and consolidate_categories() methods.
         """
-        testclass1 = PoiData(self.place_info1, self.poi_results1)
+        testclass1: PoiData = PoiData(self.place_info1, self.poi_results1)
         self.assertEqual(len(testclass1.poi_results), 33)
         self.assertTrue("poi" not in testclass1.place_info)
         self.assertTrue(len(testclass1.poi_results[0]) > 9)
