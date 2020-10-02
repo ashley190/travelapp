@@ -1,5 +1,6 @@
 import unittest
 from userfile import UserFile
+from file_handler import JsonHandler
 from tests.test_filehandlers import TestFile    # type: ignore
 from tests.test_poi_data import TestPoiData     # type: ignore
 from poi_data import PoiData
@@ -14,7 +15,7 @@ class TestUserFile(unittest.TestCase):
         Sets up separate UserFile objects with different regions.
         Regions consist of places that exist in search_history and
         new regions. Also utilises setUp variables from the TestPoiData
-        class in the test_poi_data module to create test variables
+        class in the test_poi_data module to simulate input
         for a UserFile object's test_read_flag_and_save method.
         """
         self.test_file1 = UserFile(
@@ -37,13 +38,21 @@ class TestUserFile(unittest.TestCase):
         self.test_data = testclass1.place_info
 
     def tearDown(self):
-        """Clean up test files created during setUp/testing."""
+        """Remove test files + search_history created during setUp/testing."""
 
         try:
             TestFile.delete_test_file(
                 "tests/resources/test/Melbourne-Australia.json")
         except FileNotFoundError:
             pass
+
+        try:
+            content = self.test_file4.past_searches
+            content.remove(["Melbourne", "Australia"])
+            JsonHandler.write_json(
+                f"{self.test_file4.path}search_history.json", content)
+        except ValueError:
+            print("['Melbourne', 'Australia'] removed")
 
     def test_file_instantiation(self):
         """Tests UserFile object instantiation.

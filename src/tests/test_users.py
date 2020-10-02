@@ -16,7 +16,7 @@ class TestUserClass(unittest.TestCase):
             mock_input (str): mock user inputs each time builtins.input
                 is called. Sequence of input determined by patch side effects.
         """
-        os.execl = Mock()
+        os.execl = Mock()   # prevent application restart
         self.testuser1 = User(test=True)
         self.testuser1.set_API_key("test1")
         self.testuser1.set_attributes()

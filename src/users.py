@@ -48,7 +48,7 @@ class User:
         Returns:
             True if key exists, False if file does not exist.
         """
-        key_exist = False
+        key_exist: bool = False
         try:
             with open(file_path, "r") as file:
                 content = file.read()
