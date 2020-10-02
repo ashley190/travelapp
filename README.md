@@ -5,7 +5,7 @@
 In order for this application to run:-
 1. Ensure you have Python 3.8, python3.8-venv and python3-pip installed on your system.
 2. Clone the application onto your system from https://github.com/ashley190/travelapp
-3. Navigate to the travelapp folder and activate the python3.8 virtual environment.
+3. Navigate to the *travelapp* folder and activate the python3.8 virtual environment.
 4. Install application dependencies within the Python3.8 virtual environment by running `pip install -r requirements.txt` on your terminal.
 5. Sign up for a RapidApi account and log into your account at https://rapidapi.com/apidojo/api/tripadvisor1
 6. Subscribe to the TripAdvisor Api and select the free basic plan. Once subscribed, the 'Subscribe to Test' button on the TripAdvisor Api page will turn to 'Test Endpoint' and your API key can be found in the field '**X-RapidAPI-Key**' field. You will need this key within the application.
@@ -13,15 +13,19 @@ In order for this application to run:-
 
 ### Running the application
 1. In an activated python3.8 virtual environment with dependencies installed(see above), change directories into travelapp/src and run the command `python main.py` on your terminal.
-2. You will be prompted to enter your name. This is the name where your searches will be saved under and retrieved from when you use travelapp in the future. Ensure that you enter the same name when you use the the application next time if you would like to retrieve and view your past searches.
+2. If you do not already have an API key saved, you will be prompted to enter your API key (without quotemarks). This will be stored as an environment variable in the *src/.env* file.
+
+    ![API key](docs/apikey.PNG)
+
+3. You will be prompted to enter your name. This is the name where your searches will be saved under and retrieved from when you use travelapp in the future. Ensure that you enter the same name when you use the the application next time if you would like to retrieve and view your past searches.
 
     ![User name](docs/user-name.PNG)
-3. Once you entered your name, if you do not already have an API key saved, you will be prompted to put in an API key. Enter in your API key when prompted (without quotemarks). The application will then store it as a persistent environment variable in the *src/.env* file.
-    ![API key](docs/apikey.PNG)
-4. Once the API key has been saved, you will be presented with a selection menu to select a country. You can navigate this menu using the up and down arrow keys on your keyboard or type in your preferred country by starting you search with a '/'. The list will narrow down to the available items as you type. 
+
+4. You will then be presented with a selection menu to select a country. You can navigate this menu using the up and down arrow keys on your keyboard or type in your preferred country by starting you search with a '/'. The list will narrow down to the available items as you type. 
 
     ![selection-menu](docs/selection-menu.PNG) 
-    ![type-select](docs/typing-search.PNG).
+    ![type-select](docs/typing-search.PNG)
+
 5. Once that is completed, you will be prompted to select a region/state and city(if required). The steps for selection for region/state and/or city is identical to step 4.
 6. Once the selection step is completed, the application will attempt to:-
     - Search through your past saved searches for your selected location. If found, it will display the available information along with a list of places of interest(POIs) in your selected location.
@@ -74,7 +78,7 @@ If you encounter problems with the application, try the following:-
 Travelapp is an application that helps retrieve, save and display information about travel locations or points of interest. It utilises the TripAdvisor API for information on places of interest (POIs). It helps users to search and view information on places of interest at a region/city level to help make travel decisions. 
 
 ### Application Features
-- Feature 1: Obtain user info and API_key. Stores and reference the API key as a persistent environment variable.
+- Feature 1: Obtain API_key and user's name. Stores and reference the API key as a persistent environment variable and restarts application to load the .env API key for the application.
 - Feature 2: Generates user selection menu for countries, regions/states and cities for users to enter their place of interest. List of countries, regions and cities are based on the worldcities.csv file created by SimpleMaps that is converted to Json and structured to generate a user navigable selection menu (using the simple-term-menu external module)
 - Feature 3: Based on user's selection, the program looks through past searches for a match. If that location has been searched before, data will be retrieved and displayed (No outbound requests made).
 - Feature 4: If data does not exist in a user's search history, API queries will be constructed and sent in the following manner:-
@@ -91,6 +95,19 @@ Travelapp is an application that helps retrieve, save and display information ab
 ![Application logic](docs/application-logic.png)
 
 The above application logic chart is color coded to represent the objects used to perform the different functionalities throughout the flow of the application.
+
+### CI/CD workflow
+The CI/CD workflow consists of two components.
+- Continuous integration(CI): This component is to automate several tasks upon pushing and integrating code onto GitHub. These tasks are done on a fresh virtual machine that has python3.8 and software dependencies installed before running the tasks below:-
+    1. Running automated tests to check if code passed without errors.
+    2. Type checking using mypy - Type hinting is used in the code for documentation purposes and this is checked in both the source code and test files using mypy.
+    3. Style check using flake8 - All code is check for compliance with the PEP-8 convention using flake8.
+- Continuous deployment(CD): Upon a successful integration through CI, the code will then be deployed to an AWS EC2 instance set up for the code. GitHub will connect to the EC2 instance via SSH and does a fresh install of the application and all its dependencies on the AWS EC2 instance. In order to test this, you will need the following:-
+    1. Your own EC2 instance running on Ubuntu 18.06 or later with python3.8, python3.8-venv and python3-pip installed.
+    2. A github-actions user set up on the EC2 instance.
+    3. Generate SSH key, store the public key under */home/github-actions/.ssh/authorized_keys* and copy private key into the secrets settings within your GitHub repo for travelapp and name it **SSH_KEY**.
+    4. Obtain the IP address from you EC2 instance and update the host field with the IP address of your EC2 instance.
+    5. Run the CI/CD workflow and the application will now be installed and ready to run in a python virtual environment in */home/github-actions/travelapp*.
 
 ## Software Implementation
 
