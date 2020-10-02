@@ -3,7 +3,7 @@ import json
 
 
 class CsvHandler:
-    """Contains method(s) that interface with csv files"""
+    """Contains method(s) that interact with csv files"""
 
     @classmethod
     def read_csv(cls, file_path: str) -> list:
@@ -36,11 +36,11 @@ class CsvHandler:
 class JsonHandler:
     @classmethod
     def read_json(cls, path: str) -> list:
-        """Reads json into a python usable format.
+        """Reads json into python data.
 
         Attempts to open a json file in read mode; read
         contents of json file and decodes json data into python
-        usable format.
+        data.
 
         Args:
             path (str): file path pointing to json file to
@@ -53,7 +53,7 @@ class JsonHandler:
         """
         try:
             with open(path, "r") as json_file:
-                json_string = json_file.read()
+                json_string: str = json_file.read()
                 return json.loads(json_string)
         except FileNotFoundError:
             return []
@@ -68,7 +68,7 @@ class JsonHandler:
             data : python data to be encoded into json format
         """
         with open(path, "w") as json_file:
-            json_string = json.dumps(data)
+            json_string: str = json.dumps(data)
             json_file.write(json_string)
 
 
@@ -78,7 +78,7 @@ class FileConverter:
     def save_csv_as_json(cls, csv_path: str, json_path: str):
         """Convert csv file into json.
 
-        Reads csv file data from a file into python format;
+        Reads csv file data from a file into python data;
         then convert python data into json and saved in a
         json file
 
