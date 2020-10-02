@@ -44,7 +44,7 @@ class TestUserClass(unittest.TestCase):
         """Tests User object's API_key_check() method.
 
         Tests the presence API keys in the correct files using the
-        key_exist value boolean returned by the API_key_check() method.
+        key_exist boolean value returned by the API_key_check() method.
         """
         self.assertTrue(self.testuser1.API_key_check("test1"))
         self.assertFalse(self.testuser2.API_key_check("fake"))
