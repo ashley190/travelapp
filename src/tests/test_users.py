@@ -8,7 +8,7 @@ class TestUserClass(unittest.TestCase):
     """Test case for testing User objects."""
 
     @patch("builtins.input",
-           side_effect=["key123", "key456", "testuser1", "testuser2"])
+           side_effect=["key123", "testuser1", "key456", "testuser2"])
     def setUp(self, mock_input: str):
         """Sets up test variables for testing of User object.
 
@@ -17,11 +17,11 @@ class TestUserClass(unittest.TestCase):
                 is called. Sequence of input determined by patch side effects.
         """
         os.execl = Mock()
-        self.testuser1 = User()
+        self.testuser1 = User(test=True)
         self.testuser1.set_API_key("test1")
-        self.testuser2 = User()
-        self.testuser2.set_API_key("test2")
         self.testuser1.set_attributes()
+        self.testuser2 = User(test=True)
+        self.testuser2.set_API_key("test2")
         self.testuser2.set_attributes()
 
     def tearDown(self):

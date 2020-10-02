@@ -5,8 +5,26 @@ import sys
 class User:
     """Generates user object."""
 
+    def __init__(self, test: bool = False):
+        """Initialises user object by checking API_key existence.
+
+        If key does not exist, user will be prompted to enter API key.
+        This is then saved and application will be rebooted that will
+        then be able to detect and access the API key before proceeding
+        with the next step of the application.
+
+        Args:
+            test (bool) = For testing purposes, no process happens under
+                test conditions to allow for manual input of test conditions.
+                Defaults to False.
+        """
+        if not test:
+            while not self.API_key_check():
+                self.set_API_key()
+            self.set_attributes()
+
     def set_attributes(self):
-        """Initialises user object.
+        """Sets User object attributes.
 
         Takes in user input to generate instance attributes.
         """
@@ -16,23 +34,23 @@ class User:
         #: str: defines file path for saving and retrieving data
         # based on user name. User's searches will be retrieved and saved
         # under a folder named using self.name as a subdirectory
-        # under src/resources.
+        # under "src/resources".
         self.path: str = f"resources/{self.name}/"
 
-    def API_key_check(self, key_file: str = ".env") -> bool:
+    def API_key_check(self, file_path: str = ".env") -> bool:
         """Check for user's API key stored in .env file.
+
         File path must be src/.env for the application to work.
 
         Args:
-            key_file (str, optional): file path to API_KEY variable.
-                Defaults to ".env".
+            file_path (str): file path to retrieve API_key. Defaults to ".env".
 
         Returns:
             True if key exists, False if file does not exist.
         """
         key_exist = False
         try:
-            with open(key_file, "r") as file:
+            with open(file_path, "r") as file:
                 content = file.read()
                 if "API_KEY" in content:
                     key_exist = True
@@ -40,8 +58,8 @@ class User:
             key_exist = False
         return key_exist
 
-    def set_API_key(self, file_path=".env"):
-        """Sets user's API_KEY to src/.env.
+    def set_API_key(self, file_path: str = ".env"):
+        """Saves user's API_KEY to the specified file path.
 
         Prints instruction for user to obtain API key and subscribe to the
         RapidApi TripAdvisor API, prompt user to enter API_KEY and store
@@ -50,8 +68,7 @@ class User:
         not saved in git.
 
         Args:
-            file_path (str, optional): file path to API_KEY variable.
-                Defaults to ".env".
+            file_path (str): file path to save API_key. Defaults to ".env".
         """
         print("""
     You can obtain an API key when you sign up
@@ -62,6 +79,6 @@ class User:
         with open(file_path, "w") as file:
             file.write(f"API_KEY={user_key}")
         print("API key saved.")
-        # Program restarts after API_key is saved.
+        # Program restarts after API_key is saved in order to access .env
         python = sys.executable
         os.execl(python, python, *sys.argv)

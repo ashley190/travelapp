@@ -120,10 +120,11 @@ The first three days were spent on searching for a suitable API for travel queri
 
 ### Set up project on Github and CI workflow
 Along with the resource gathering phase, the project was initialised on GitHub and a Continuous Integration(CI) workflow was written for several tasks to be automated upon pushing code from a local development environment into GitHub. Tasks include:-
-    1. Running automated tests on code
-    2. Style check using flake8
-    3. Type hinting checks using mypy.
+1. Running automated tests on code
+2. Data type checks using mypy.
+3. Style check using flake8
 These tasks ensure that good quality code was being integrated with the source code on GitHub.
+
 ![GITHub and CI setup](docs/2209-Projectscreenshot.png)
 *Project status - 22 Sep*
 
