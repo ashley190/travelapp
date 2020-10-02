@@ -62,12 +62,13 @@ class TestTripAdvisorApi(unittest.TestCase):
         self.assertIsInstance(test1_location_result, dict)
         self.assertEqual(len(test1_location_result), 3)
         self.assertTrue(test1_location_result["name"] == "Lima")
-
-        sys.exit = Mock()
+        # test unsuccessful query
+        sys.exit = Mock()   # prevent system exit when testing
         try:
             self.test2.location_search(self.test2.region_and_country)
-        except TypeError:
             sys.exit.assert_called_once()
+        except TypeError:
+            print("Error as expected. No results returned")
 
     @patch("get_poi.ApiQuery")
     def test_get_poi(self, ApiQuery):

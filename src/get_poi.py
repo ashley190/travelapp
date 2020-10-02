@@ -15,7 +15,7 @@ class TripAdvisorApi:
         location_suffix (str): TripAdvisor API endpoint suffix
             for the location autocomplete search.
         poi_suffix (str): TripAdvisor API endpoint suffix
-            for list of attractions search.
+            for list of attractions (POI) search.
         headers (dict): required headers for API get query.
             This includes the API key stored as a persistent
             environment variable in the src/.env file.
@@ -60,7 +60,7 @@ class TripAdvisorApi:
             level search as required.
 
         Returns:
-            dict: relevant fields from API query response.
+            dict: chosen fields from API query response, if successful.
         """
         url: str = self.endpoint + self.location_suffix
         querystring: dict = {"query": f"{place[0]}, {place[1]}"}
@@ -78,15 +78,16 @@ class TripAdvisorApi:
         """Queries API endpoint for POI data.
 
         Constructs API query, query API attractions endpoint,
-        process response for errors and returns results if successful.
+        process response for errors or returns results if successful.
 
         Args:
             location_id (str): location_id found in a successful
                 location_search.
 
         Returns:
-            dict: Dictionary containing a list of Points of Interests(POIs)
-                from the attractions query using a locations location_id.
+            dict: If successful, a dictionary containing a list of
+                Points of Interests(POIs) is returned from the
+                attractions query using a locations location_id.
         """
         url: str = self.endpoint + self.poi_suffix
         querystring: dict = {"location_id": (location_id)}

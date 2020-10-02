@@ -18,24 +18,25 @@ class TestUserFile(unittest.TestCase):
         class in the test_poi_data module to simulate input
         for a UserFile object's test_read_flag_and_save method.
         """
-        self.test_file1 = UserFile(
+        self.test_file1: UserFile = UserFile(
             ["New York", "United States"], "tests/resources/test/")
-        self.test_file2 = UserFile(
+        self.test_file2: UserFile = UserFile(
             ["Delhi", "India"], "tests/resources/test/")
-        self.test_file3 = UserFile(
+        self.test_file3: UserFile = UserFile(
             ["Illinois", "United States"], "tests/resources/test/")
         self.test_file3.city = ["Chicago", "United States"]
 
         # set up for test_read_flag_and_save
-        self.test_file4 = UserFile(
+        self.test_file4: UserFile = UserFile(
             ["Victoria", "Australia"], "tests/resources/test/")
         self.test_file4.city = ["Melbourne", "Australia"]
-        testapidata = TestPoiData()
+        testapidata: TestPoiData = TestPoiData()
         testapidata.setUp()
-        testclass1 = PoiData(testapidata.place_info1, testapidata.poi_results1)
+        testclass1: PoiData = PoiData(
+            testapidata.place_info1, testapidata.poi_results1)
         testclass1.extract()
         testclass1.consolidate_categories()
-        self.test_data = testclass1.place_info
+        self.test_data: dict = testclass1.place_info
 
     def tearDown(self):
         """Remove test files + search_history created during setUp/testing."""
@@ -47,12 +48,12 @@ class TestUserFile(unittest.TestCase):
             pass
 
         try:
-            content = self.test_file4.past_searches
+            content: list = self.test_file4.past_searches
             content.remove(["Melbourne", "Australia"])
             JsonHandler.write_json(
                 f"{self.test_file4.path}search_history.json", content)
         except ValueError:
-            print("['Melbourne', 'Australia'] removed")
+            print("['Melbourne', 'Australia'] removed.")
 
     def test_file_instantiation(self):
         """Tests UserFile object instantiation.
@@ -73,11 +74,11 @@ class TestUserFile(unittest.TestCase):
         method for previously saved data and data not previously searched
         and saved.
         """
-        test1_place = self.test_file1.region
+        test1_place: list = self.test_file1.region
         self.test_file1.searchfile = f"{test1_place[0]}-{test1_place[1]}.json"
-        test2_place = self.test_file2.region
+        test2_place: list = self.test_file2.region
         self.test_file2.searchfile = f"{test2_place[0]}-{test2_place[1]}.json"
-        test3_place = self.test_file3.city
+        test3_place: list = self.test_file3.city
         self.test_file3.searchfile = f"{test3_place[0]}-{test3_place[1]}.json"
         self.assertTrue(self.test_file1.search_and_display_data(test1_place))
         self.assertFalse(self.test_file2.search_and_display_data(test2_place))
@@ -89,7 +90,8 @@ class TestUserFile(unittest.TestCase):
         Tests for correct final_format and file_path returned by the
         read_flag_and_save method.
         """
-        result = self.test_file4.read_flag_and_save(self.test_data, "city")
+        result: tuple = self.test_file4.read_flag_and_save(
+            self.test_data, "city")
         self.assertNotIn("Region", result[0])
         self.assertIn("City", result[0])
         self.assertTrue(self.test_file4.city == result[0]["City"])
