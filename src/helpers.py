@@ -15,7 +15,7 @@ class ErrorHandling:
         printed.
 
         Args:
-            response (int): Response output from the get_data method
+            response (tuple): Response output from the get_data method
                 of an ApiQuery object.
         """
         error = False
@@ -151,9 +151,12 @@ class Decorators:
         """
         def wrapper(*args, **kwargs):
             func_value = func(*args, **kwargs)
+            print("Saving data")
             content: list = JsonHandler.read_json(func_value[1])
             content.append(func_value[0])
             JsonHandler.write_json(func_value[1], content)
+            print("Data saved")
+            print("Making it presentable.....\n\n\n")
             display_content: Display = Display(content[0])
             display_content.display_saved_data()
             return func_value

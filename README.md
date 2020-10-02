@@ -15,7 +15,7 @@ In order for this application to run:-
 1. In an activated python3.8 virtual environment with dependencies installed(see above), change directories into travelapp/src and run the command `python main.py` on your terminal.
 2. If you do not already have an API key saved, you will be prompted to enter your API key (without quotemarks). This will be stored as an environment variable in the *src/.env* file.
 
-    ![API key](docs/apikey.PNG)
+    ![API key](docs/apikey.png)
 
 3. You will be prompted to enter your name. This is the name where your searches will be saved under and retrieved from when you use travelapp in the future. Ensure that you enter the same name when you use the the application next time if you would like to retrieve and view your past searches.
 
@@ -70,6 +70,7 @@ If you encounter problems with the application, try the following:-
         - test_get_poi.py - contains test case to test TripAdvisorApi objects.
         - test_poi_data.py - contains test case for testing of PoiData objects.
         - test_file_handlers.py - contains TestFile class to set up Test data for testing purposes as well as methods to create and delete test files in csv/json. Also has a TestFileHandlers test case that tests classes in the file_handler.py module.
+        - [resources](src/tests/resources) - data files for testing.
 - [development-log.md] - Developer's log during app development.
 - [requirements.txt](requirements.txt) - list of application dependencies that can be installed by running `pip install -r requirements.txt`.
 

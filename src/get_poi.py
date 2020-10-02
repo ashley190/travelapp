@@ -111,9 +111,11 @@ class TripAdvisorApi:
         print("Constructing and sending query. Please wait a moment...")
         region_info: dict = self.location_search(self.region_and_country)
         region_pois: dict = self.get_poi(region_info["location_id"])
+        print("Region search complete")
         if "errors" in region_pois:
             city_info: dict = self.location_search(self.city_and_country)
             city_pois: dict = self.get_poi(city_info["location_id"])
+            print("City search complete")
             return (city_info, city_pois, "city")
         else:
             return (region_info, region_pois, "region")

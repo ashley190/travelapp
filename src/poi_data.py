@@ -27,6 +27,7 @@ class PoiData:
         consolidate extracted data into the place_info instance attribute
         under the key 'pois'.
         """
+        print("Cleaning and extracting data")
         raw_pois: list = Helpers.remove_ads(self.poi_results)
         list_of_pois: list = []
         for poi in raw_pois:

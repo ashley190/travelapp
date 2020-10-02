@@ -52,6 +52,7 @@ class UserFile:
         Returns:
             dict: raw content from location save file.
         """
+        print("Retrieving saved data")
         content: list = JsonHandler.read_json(file_path)
         retrieved: dict = {}
         for item in content:
@@ -75,6 +76,7 @@ class UserFile:
         path: str = f"{self.path}{self.searchfile}"
         if place in self.past_searches:
             data: dict = self.retrieve_saved(place, path)
+            print("Making it pretty....\n\n\n")
             display_result: Display = Display(data)
             display_result.display_saved_data()
             file_found = True
