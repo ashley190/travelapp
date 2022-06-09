@@ -7,7 +7,7 @@ In order for this application to run:-
 2. Clone the application onto your system from https://github.com/ashley190/travelapp
 3. Navigate to the *travelapp* folder and activate the python3.8 virtual environment.
 4. Install application dependencies within the Python3.8 virtual environment by running `pip install -r requirements.txt` on your terminal.
-5. Sign up for a RapidApi account and log into your account at https://rapidapi.com/apidojo/api/TripAdvisor
+5. Sign up for a RapidApi account and log into your account at [https://rapidapi.com/apidojo/api/TripAdvisor](https://rapidapi.com/apidojo/api/tripadvisor1/)
 6. Subscribe to the TripAdvisor Api and select the free basic plan. Once subscribed, the 'Subscribe to Test' button on the TripAdvisor Api page will turn to 'Test Endpoint' and your API key can be found in the field '**X-RapidAPI-Key**' field. You will need this key within the application.
 7. Ensure that your terminal size is at least 100 columns wide. You can use the command `tput cols` in your terminal to see the width of your terminal in columns.
 
